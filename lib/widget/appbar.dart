@@ -2,8 +2,8 @@
 import 'package:achievelab/leaderboard/leaderboard_page.dart';
 import 'package:flutter/material.dart';
 import 'package:achievelab/widget/styledtext.dart';
-
 import '../select_page.dart';
+import '../profile/profile_page.dart';
 
 
 class StyledAppBar extends StatelessWidget {
@@ -50,8 +50,8 @@ class StyledAppBar extends StatelessWidget {
             onSelected:(value){
               if(value == 0){
                 //move to my profile page, call API and get info
-                // Navigator.push(context, MaterialPageRoute(
-                //     builder: (_) => ProfilePage()));
+                Navigator.push(context, MaterialPageRoute(
+                    builder: (_) => ProfilePage("Chaemin")));
               }else if(value == 1){
                 //move to leaderboard page, with my team, save which team he or she is on
                 Navigator.push(context, MaterialPageRoute(
