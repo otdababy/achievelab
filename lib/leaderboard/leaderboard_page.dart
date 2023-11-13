@@ -1,3 +1,4 @@
+import 'package:achievelab/leaderboard/teamcontainer.dart';
 import 'package:achievelab/teamlist/teaminfo.dart';
 import 'package:flutter/material.dart';
 import 'package:achievelab/widget/styledtext.dart';
@@ -46,21 +47,33 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
             ],
           ),
         ),
-        body: Center(
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Column(
-                  children: [
-                    StyledText(text: _name, size: 40),
+        body: Padding(
+          padding: const EdgeInsets.all(15.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              StyledText(text: "$_name Challenge 2023 Week 40", size: 30),
+              Container(height: 15,),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  StyledText(text: "1", size: 20),
+                  Container(width: 5,),
+                  TeamContainer("AchieveLab Team", 85),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  StyledText(text: "2", size: 20),
+                  Container(width: 5,),
+                  TeamContainer("AchieveLab Team", 85),
+                ],
+              ),
 
 
-                    //
-                  ],
-                ),
-              ],
-            ),
+            ],
           ),
         )
     );

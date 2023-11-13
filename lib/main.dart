@@ -1,5 +1,6 @@
 import 'package:achievelab/leaderboard/leaderboard_page.dart';
 import 'package:achievelab/select_page.dart';
+import 'package:achievelab/widget/appbar.dart';
 import 'package:achievelab/widget/styledbutton.dart';
 import 'package:achievelab/widget/styledtext.dart';
 import 'package:flutter/material.dart';
@@ -62,7 +63,6 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-
     //name field
     var _nameField =
     Container(
@@ -101,18 +101,9 @@ class _LoginPageState extends State<LoginPage> {
 
 
     return Scaffold(
-        appBar: AppBar(
-            backgroundColor: Colors.white,
-            title: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(15.0),
-                  child: StyledText(text: "AchieveLab",size: 20,),
-                ),
-              ],
-            )
-        ),
+        appBar: PreferredSize(
+            preferredSize: const Size.fromHeight(100),
+            child: StyledAppBar()),
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
