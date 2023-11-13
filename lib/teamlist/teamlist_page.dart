@@ -44,6 +44,7 @@ class _TeamListPageState extends State<TeamListPage> {
           child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Column(
                   children: [

@@ -55,6 +55,7 @@ class _SelectPageState extends State<SelectPage> {
                   children: [
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         InterestButton(text: "Running",name: _name,),
                         InterestButton(text: "Waking up early",name: _name,),
