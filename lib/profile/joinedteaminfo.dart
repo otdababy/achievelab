@@ -131,7 +131,7 @@ class _JoinedTeamInfoState extends State<JoinedTeamInfo> {
               children: [
                 Container(width: 20,),
                 Container(
-                  // width: 500,
+                  width: 650,
                   height: 160,
                   decoration: BoxDecoration(
                       color: Colors.grey.shade700,
