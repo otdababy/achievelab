@@ -2,6 +2,7 @@
 import 'package:achievelab/teamlist/joinpop.dart';
 import 'package:achievelab/teamlist/teamlist_page.dart';
 import 'package:achievelab/teamlist/teamtext.dart';
+import 'package:achievelab/teamroom/team_page.dart';
 import 'package:achievelab/widget/styledbutton.dart';
 import 'package:achievelab/widget/styledtext.dart';
 import 'package:flutter/material.dart';
@@ -99,13 +100,8 @@ class _JoinedTeamInfoState extends State<JoinedTeamInfo> {
                         child: TextButton(
                           onPressed: () async {
                             //send join request, show popup after joining,
-                            await showDialog(
-                                context: context,
-                                builder: (BuildContext context) {
-                                  //ask score system api
-                              return JoinPop(team: _name,);
-                            }
-                            );
+                            Navigator.push(context, MaterialPageRoute(
+                              builder: (_) => TeamPage("CJ")));
                           },
                           child: Text(
                             "Enter",
