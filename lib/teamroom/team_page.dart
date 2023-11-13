@@ -28,37 +28,21 @@ class _TeamPageState extends State<TeamPage> {
         appBar: PreferredSize(
             preferredSize: const Size.fromHeight(100),
             child: StyledAppBar()),
-        body: Center(
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+        body: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Column(
               children: [
-                Column(
-                  children: [
-                    StyledText(text: "Select your interest", size: 40),
-                    Container(height: 30,)
-                  ],
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        InterestButton(text: "Running",name: _name,),
-                        InterestButton(text: "Waking up early",name: _name,),
-                        InterestButton(text: "Exercising",name: _name,),
-                        InterestButton(text: "Eating healthy",name: _name,),
-                      ],
-                    ),
-                    Row(
-
-                    ),
-                  ],
-                )
+                StyledText(text: "$_name Challenge 2023 Week 40", size: 30),
               ],
             ),
-          ),
+            Column(
+              children: [
+
+              ],
+            )
+          ],
         )
     );
   }
