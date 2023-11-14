@@ -1,4 +1,5 @@
 
+import 'package:achievelab/api/get_team_main_api.dart';
 import 'package:achievelab/teamlist/joinpop.dart';
 import 'package:achievelab/teamlist/teamlist_page.dart';
 import 'package:achievelab/teamlist/teamtext.dart';
@@ -25,7 +26,6 @@ class JoinedTeamInfo extends StatefulWidget {
     _members = members;
   }
 
-
   @override
   _JoinedTeamInfoState createState() => _JoinedTeamInfoState(_name,_goal,_duration,_time,_deposit,_members);
 }
@@ -49,6 +49,21 @@ class _JoinedTeamInfoState extends State<JoinedTeamInfo> {
 
   bool clicked = false;
 
+
+  Future<Map<dynamic, dynamic>> handleTeam(String teamName) async {
+    //GET request
+    try{
+      Map<dynamic, dynamic> teamInfo = {};
+      teamInfo = await GetTeamMainAPI.getTeamMain(teamName);
+      // as List<Map<String, dynamic>>;
+      return teamInfo;
+    }
+    catch(e) {
+      print('실패함');
+      print(e.toString());
+      return {};
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -100,8 +115,10 @@ class _JoinedTeamInfoState extends State<JoinedTeamInfo> {
                         child: TextButton(
                           onPressed: () async {
                             //send join request, show popup after joining,
+                            final Future<Map<dynamic, dynamic>> infop = handleTeam(_name);
+                            Map<dynamic, dynamic> info = await infop;
                             Navigator.push(context, MaterialPageRoute(
-                              builder: (_) => TeamPage("CJ")));
+                              builder: (_) => TeamPage(info)));
                           },
                           child: Text(
                             "Enter",

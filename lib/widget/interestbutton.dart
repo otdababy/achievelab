@@ -1,4 +1,8 @@
 
+import 'dart:convert';
+import 'dart:js';
+
+import 'package:achievelab/api/get_teams_api.dart';
 import 'package:achievelab/teamlist/teamlist_page.dart';
 import 'package:flutter/material.dart';
 
@@ -21,15 +25,31 @@ class InterestButton extends StatelessWidget {
   // final Colors color;
   // final GestureTapCallback press;
 
+  Future<List<dynamic>> getTeamList() async {
+    //GET request
+    try{
+      List<dynamic> teamList = [];
+      teamList = await GetTeamsAPI.getTeams("wake_up");
+      // as List<Map<String, dynamic>>;
+      return teamList;
+    }
+    catch(e) {
+      print('실패함');
+      print(e.toString());
+      return [];
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(5.0),
       child: GestureDetector(
-        onTap: (){
-          //Move onto list of teams
+        onTap: () async {
+          //call get teams api
+          final Future<List> teamListp = getTeamList();
+          List<dynamic> teamList = await teamListp;
           Navigator.push(context, MaterialPageRoute(
-              builder: (_) => TeamListPage(name)));
+              builder: (_) => TeamListPage(teamList)));
         },
         child: Container(
             width: 170,

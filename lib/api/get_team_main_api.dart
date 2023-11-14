@@ -109,8 +109,10 @@ class GetTeamMainAPI {
       "date": dateString,
       "deposit_left": deposit,
       "description": a['description'],
+
       "leaderboard": teamPoints, // List<Map<userName,point>>
-      "all_progress": progress,
+      "all_progress": progress, // userName : [true,false,...]
+
     };
 
     return teamMainInfo;

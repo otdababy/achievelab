@@ -50,7 +50,8 @@ class _TeamInfoState extends State<TeamInfo> {
   }
 
   bool clicked = false;
-  void handleJoinTeam(String userName, String teamName) async {
+
+  Future<Map<dynamic, dynamic>> handleTeam(String userName, String teamName) async {
     //GET request
     try{
       var a = await JoinTeamAPI.joinTeam(userName, teamName);
@@ -58,23 +59,21 @@ class _TeamInfoState extends State<TeamInfo> {
       //result from GET
       final result = body['result'];
       print(result);
-      //Post 성공
-      if(result == "success"){
-        await showDialog(
+      Map<dynamic, dynamic> joined = result;
+      // as List<Map<String, dynamic>>;
+      await showDialog(
             context: context,
             builder: (BuildContext context) {
               //ask score system api
-          return JoinPop(team: teamName,);
+          return JoinPop(joined, teamName);
         }
-        );
-      }
-      else{
-        //fail
-      }
+      );
+      return joined;
     }
     catch(e) {
       print('실패함');
       print(e.toString());
+      return {};
     }
   }
 
@@ -133,7 +132,7 @@ class _TeamInfoState extends State<TeamInfo> {
                                   //send join request, show popup after joining,
                                   final user = FirebaseAuth.instance.currentUser;
                                   final userName = user!.displayName!;
-                                  handleJoinTeam(userName, _name);
+                                  handleTeam(userName, _name);
                                 
                                 },
                                 child: Text(
