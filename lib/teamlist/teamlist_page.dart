@@ -6,20 +6,20 @@ import 'package:achievelab/widget/styledbutton.dart';
 import 'package:achievelab/widget/styledtext.dart';
 
 class TeamListPage extends StatefulWidget {
-  late String _name;
-  TeamListPage(String name){
-    _name = name;
+  late List<dynamic> _teamList;
+  TeamListPage(List<dynamic> teamList){
+    _teamList = teamList;
   }
 
   @override
-  State<TeamListPage> createState() => _TeamListPageState(_name);
+  State<TeamListPage> createState() => _TeamListPageState(_teamList);
 }
 
 class _TeamListPageState extends State<TeamListPage> {
-  late String _name;
+  late List<dynamic> _teamList;
 
-  _TeamListPageState(String name) {
-    _name = name;
+  _TeamListPageState(List<dynamic> teamList) {
+    _teamList = teamList;
   }
 
   void translate(String text){
@@ -50,7 +50,8 @@ class _TeamListPageState extends State<TeamListPage> {
                   children: [
                     const StyledText(text: "Find your team", size: 40),
                     Container(height: 30,),
-                    TeamInfo("AchieveLab", "Running 3km everyday",
+                    for(var i =0; i<_teamList.length; i++)
+                    TeamInfo("${_teamList[0]['name']}", "Running 3km everyday",
                        "10/1-10/31", "5PM, Every Sunday","500 points, 30 points deducted per failure", 7, ),
                     TeamInfo("AchieveLab", "Running 3km everyday",
                       "10/1-10/31", "5PM, Every Sunday","500 points, 30 points deducted per failure", 7, ),
