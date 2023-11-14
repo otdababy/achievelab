@@ -10,6 +10,8 @@ import 'firebase_options.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+import "package:achievelab/api/get_teams_api.dart";
+
 void main() {
   Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform)
       .then((value) => runApp(const MyApp()));
