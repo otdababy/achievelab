@@ -28,7 +28,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // GetProfileAPI.getProfile("cm").then((value) => print(value));
-    GetTeamMainAPI.getTeamMain("crazy running").then((value) => print(value));
 
     return MaterialApp(
       title: 'AchieveLab',
@@ -75,6 +74,10 @@ class _LoginPageState extends State<LoginPage> {
     FirebaseAuth.instance
         .signInWithEmailAndPassword(email: email, password: password)
         .then((value) => {
+            // If no displayName, set email as displayName
+            if (value.user!.displayName == null) {
+              value.user!.updateDisplayName(email)
+            },
               Navigator.push(
                   context,
                   MaterialPageRoute(
