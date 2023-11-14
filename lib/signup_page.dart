@@ -1,5 +1,6 @@
 import 'package:achievelab/leaderboard/leaderboard_page.dart';
 import 'package:achievelab/select_page.dart';
+import 'package:achievelab/signup_pop.dart';
 import 'package:achievelab/teamlist/teamtext.dart';
 import 'package:achievelab/widget/appbar.dart';
 import 'package:achievelab/widget/styledbutton.dart';
@@ -26,10 +27,36 @@ class _SignUpPageState extends State<SignUpPage> {
   final _idController = TextEditingController();
   final _pwController = TextEditingController();
   final _nameController = TextEditingController();
+  
+  bool validateName(String value) {
+      RegExp regex =
+          RegExp(r'^(?=.*?[a-z]).{4,}$');
+      if (value.isEmpty) {
+        return false;
+      } else {
+        if (!regex.hasMatch(value)) {
+          return false;
+        } else {
+          return true;
+        }
+      }
+    }
+    bool validatePassword(String value) {
+      RegExp regex =
+          RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$');
+      if (value.isEmpty) {
+        return false;
+      } else {
+        if (!regex.hasMatch(value)) {
+          return false;
+        } else {
+          return true;
+        }
+      }
+    }
 
   void signup(String email, String password, String name) {
     // Handle Authorization
-
     FirebaseAuth.instance
         .signInWithEmailAndPassword(email: email, password: password)
         .then((value) => {
@@ -163,7 +190,27 @@ class _SignUpPageState extends State<SignUpPage> {
                   text: "Sign Up",
                   width: 250,
                   height: 60,
-                  press: () {
+                  press: () async {
+                    if(!validatePassword(_pwController.text)){
+                      //pop up for wrong pw
+                      await showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            //ask score system api
+                          return Popup(title: "Password should be longer than 7 characters and contain more than one uppercase, one lower case, one digit, and one special character",);
+                          }
+                      );
+                    }
+                    else if(!validateName(_nameController.text)){
+                      //pop up for wrong name
+                      await showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            //ask score system api
+                          return Popup(title: "Nickname should be at least 4 characters long",);
+                          }
+                      );
+                    }
                     signup(_idController.text, _pwController.text, _nameController.text);
                   })
             ],
