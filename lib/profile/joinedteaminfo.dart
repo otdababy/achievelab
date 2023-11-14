@@ -1,4 +1,7 @@
 
+import 'dart:convert';
+
+import 'package:achievelab/api/get_chat_api.dart';
 import 'package:achievelab/api/get_team_main_api.dart';
 import 'package:achievelab/teamlist/joinpop.dart';
 import 'package:achievelab/teamlist/teamlist_page.dart';
@@ -65,6 +68,25 @@ class _JoinedTeamInfoState extends State<JoinedTeamInfo> {
     }
   }
 
+  Future<List<dynamic>> getChat(String teamName) async {
+    //GET request
+    try{
+      var a = await GetChatAPI.getChat(teamName);
+      final body = json.decode(a.body.toString());
+      //result from GET
+      final result = body;
+      // print(result);
+      List<dynamic> chats = result;
+      // as List<Map<String, dynamic>>;
+      return chats;
+    }
+    catch(e) {
+      print('실패함');
+      print(e.toString());
+      return [];
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -117,8 +139,12 @@ class _JoinedTeamInfoState extends State<JoinedTeamInfo> {
                             //request team info API, get info
                             final Future<Map<dynamic, dynamic>> infop = handleTeam(_name);
                             Map<dynamic, dynamic> info = await infop;
+
+                            final Future<List<dynamic>> chatp = getChat(_name);
+                            List<dynamic> chat = await chatp;
+
                             Navigator.push(context, MaterialPageRoute(
-                              builder: (_) => TeamPage(info, )));
+                              builder: (_) => TeamPage(info, chat)));
                           },
                           child: const Text(
                             "Enter",

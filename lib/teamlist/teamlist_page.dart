@@ -58,7 +58,7 @@ class _TeamListPageState extends State<TeamListPage> {
                           Container(height: 30,),
                           for(var i =0; i<_teamList.length; i++)
                           TeamInfo("${_teamList[i]['name']}", "${_teamList[i]['description']}",
-                             "10/1-10/31", "5PM, Every Sunday","500 points, 30 points deducted per failure", _teamList[i]['numMembers'] ),
+                             "10/1-10/31", "5PM, Every Sunday","100 points, 30 points deducted per failure", _teamList[i]['numMembers'] ),
         
                           //
                         ],
