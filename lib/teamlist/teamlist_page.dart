@@ -40,29 +40,31 @@ class _TeamListPageState extends State<TeamListPage> {
         appBar: PreferredSize(
             preferredSize: const Size.fromHeight(100),
             child: StyledAppBar()),
-        body: Center(
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Column(
-                  children: [
-                    const StyledText(text: "Find your team", size: 40),
-                    Container(height: 30,),
-                    for(var i =0; i<_teamList.length; i++)
-                    TeamInfo("${_teamList[0]['name']}", "Running 3km everyday",
-                       "10/1-10/31", "5PM, Every Sunday","500 points, 30 points deducted per failure", 7, ),
-                    TeamInfo("AchieveLab", "Running 3km everyday",
-                      "10/1-10/31", "5PM, Every Sunday","500 points, 30 points deducted per failure", 7, ),
-                    TeamInfo("AchieveLab", "Running 3km everyday",
-                      "10/1-10/31", "5PM, Every Sunday","500 points, 30 points deducted per failure", 7, )
-
-                    //
-                  ],
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              Center(
+                child: Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Column(
+                        children: [
+                          const StyledText(text: "Find your team", size: 40),
+                          Container(height: 30,),
+                          for(var i =0; i<_teamList.length; i++)
+                          TeamInfo("${_teamList[i]['name']}", "${_teamList[i]['description']}",
+                             "10/1-10/31", "5PM, Every Sunday","500 points, 30 points deducted per failure", _teamList[i]['numMembers'] ),
+        
+                          //
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         )
     );
