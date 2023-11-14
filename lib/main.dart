@@ -74,10 +74,6 @@ class _LoginPageState extends State<LoginPage> {
     FirebaseAuth.instance
         .signInWithEmailAndPassword(email: email, password: password)
         .then((value) => {
-            // If no displayName, set email as displayName
-            if (value.user!.displayName == null) {
-              value.user!.updateDisplayName(email)
-            },
               Navigator.push(
                   context,
                   MaterialPageRoute(
