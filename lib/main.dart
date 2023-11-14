@@ -1,4 +1,5 @@
 import 'package:achievelab/leaderboard/leaderboard_page.dart';
+import 'package:achievelab/profile/profile_page.dart';
 import 'package:achievelab/select_page.dart';
 import 'package:achievelab/signup_page.dart';
 import 'package:achievelab/teamlist/teamtext.dart';
@@ -71,18 +72,40 @@ class _LoginPageState extends State<LoginPage> {
   final _nameController = TextEditingController();
   final _pwController = TextEditingController();
 
-  void login(String email, String password) {
-    // Handle Authorization
+  Future<Map<dynamic, dynamic>> handleProfile(String userName) async {
+    //GET request
+    try{
+      Map<dynamic, dynamic> profileInfo = {};
+      profileInfo = await GetProfileAPI.getProfile(userName);
+      // as List<Map<String, dynamic>>;
+      return profileInfo;
+    }
+    catch(e) {
+      print('실패함');
+      print(e.toString());
+      return {};
+    }
+  }
 
+  Future<void> login(String email, String password) async {
+    // Handle Authorization
     FirebaseAuth.instance
         .signInWithEmailAndPassword(email: email, password: password)
         .then((value) => {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (_) => SelectPage(value.user!.displayName!)))
+          
+              // Navigator.push(
+              //     context,
+              //     MaterialPageRoute(
+              //         builder: (_) => SelectPage(value.user!.displayName!)))
             })
         .catchError((error) => print(error));
+        
+    final user = FirebaseAuth.instance.currentUser;
+    final name = user!.displayName!;
+    final Future<Map<dynamic,dynamic>> info = handleProfile(name);
+    Map<dynamic,dynamic> profileInfo = await info;
+    Navigator.push(context, MaterialPageRoute(
+              builder: (_) => ProfilePage(profileInfo)));
   }
 
   @override
