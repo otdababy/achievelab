@@ -10,7 +10,10 @@ import 'firebase_options.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+// For API testing
 import "package:achievelab/api/get_teams_api.dart";
+import "package:achievelab/api/get_leaderboard_api.dart";
+import "package:achievelab/api/get_profile_api.dart";
 
 void main() {
   Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform)
@@ -23,6 +26,8 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    GetProfileAPI.getProfile("cm").then((value) => print(value));
+
     return MaterialApp(
       title: 'AchieveLab',
       theme: ThemeData(

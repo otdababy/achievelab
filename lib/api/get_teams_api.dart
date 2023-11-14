@@ -1,6 +1,23 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class GetTeamsAPI {
+  static Future<Map<String, dynamic>> getTeamInfo(dynamic teamRef) async {
+    // teamRef is DocumentReference<Map<String, dynamic>>(...)
+
+    DocumentSnapshot element = await teamRef.get();
+
+    Map<String, dynamic> teamInfo = {
+      'name': element['name'],
+      'description': element['description'],
+      // 'duration': element['duration'], // TODO
+      // 'meetingTime': element['meeting_time'], // TODO
+      'entry_deposit': element['entry_deposit'],
+      'numMembers': element['user_refs'].length,
+    };
+
+    return teamInfo;
+  }
+
   static Future<List> getTeams(String? challengeType) async {
     CollectionReference teams = FirebaseFirestore.instance.collection('teams');
 
