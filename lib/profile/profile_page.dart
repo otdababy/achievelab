@@ -10,21 +10,23 @@ import 'package:achievelab/profile/joinedteaminfo.dart';
 
 
 class ProfilePage extends StatefulWidget {
-  late String _name;
-  ProfilePage(String name){
-    _name = name;
+  late Map<dynamic,dynamic> _info;
+  ProfilePage(Map<dynamic,dynamic> info){
+    _info = info;
   }
 
   @override
-  State<ProfilePage> createState() => _ProfilePageState(_name);
+  State<ProfilePage> createState() => _ProfilePageState(_info);
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-  late String _name;
+  late Map<dynamic,dynamic> _info;
   //
-  _ProfilePageState(String name) {
-    _name = name;
+  _ProfilePageState(Map<dynamic,dynamic> info) {
+    _info = info;
   }
+
+  List<dynamic> teams = [];
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +56,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           backgroundColor: Colors.grey,
                         ),
                         Container(height: 10,),
-                        StyledText(text: _name, size: 25),
+                        StyledText(text: _info["name"], size: 25),
                         Container(height: 20,),
                         Container(
                           width: 300,
@@ -65,12 +67,12 @@ class _ProfilePageState extends State<ProfilePage> {
                           ),
                           child: Padding(
                             padding: const EdgeInsets.all(25.0),
-                            child: const Column(
+                            child: Column(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  'Rank: ',
+                                  'Rank: ${_info['tier']}',
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
                                       color: Colors.black,
@@ -80,7 +82,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                   ),
                                 ),
                                 Text(
-                                  'Social Points: ',
+                                  'Social Points: ${_info['social_credit']}',
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
                                       color: Colors.black,
@@ -173,10 +175,9 @@ class _ProfilePageState extends State<ProfilePage> {
                                     ),
                                   ),
                                   Container(height: 20,),
-                                  JoinedTeamInfo("AchieveLab", "Running 3km everyday",
-                             "10/1-10/31", "5PM, Every Sunday","500 points, 30 points deducted per failure", 7, ),
-                                JoinedTeamInfo("AchieveLab", "Running 3km everyday",
-                             "10/1-10/31", "5PM, Every Sunday","500 points, 30 points deducted per failure", 7, ),
+                                  for(var i =0; i<_info['joining_teams'].length; i++)
+                                  JoinedTeamInfo("${_info['joining_teams'][i]['name']}", "${_info['joining_teams'][i]['description']}",
+                             "10/1-10/31", "5PM, Every Sunday","500 points, 30 points deducted per failure", _info['joining_teams'][i]['numMembers'] ),
                                 
                                 ],
                               ),
