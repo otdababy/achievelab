@@ -30,7 +30,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // GetProfileAPI.getProfile("cm").then((value) => print(value));
-    GetTeamMainAPI.getTeamMain("crazy running").then((value) => print(value));
 
     return MaterialApp(
       title: 'AchieveLab',
