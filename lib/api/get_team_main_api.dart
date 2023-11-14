@@ -51,8 +51,10 @@ class GetTeamMainAPI {
     // Goal
     // Team Leader (TODO)
 
-    List teamPoints = a['team_points'].values.toList();
-    teamPoints.sort((a, b) => b.compareTo(a));
+    // TeamPoints Map as to List<tuple>
+    List<MapEntry<String, dynamic>> teamPoints = a['team_points'].entries.toList();
+
+    teamPoints.sort((a, b) => b.value.compareTo(a.value));
 
     // For each user, get their progress
     Map<String, dynamic> progress = {};
@@ -66,7 +68,7 @@ class GetTeamMainAPI {
     Map<String, dynamic> teamMainInfo = {
       "total_points": a['total_points'],
       "description": a['description'],
-      "leaderboard": teamPoints,
+      "leaderboard": teamPoints, // List<Map<userName,point>>
       "all_progress": progress,
     };
 
