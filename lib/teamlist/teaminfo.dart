@@ -1,6 +1,7 @@
 
 import 'dart:convert';
 
+import 'package:achievelab/api/join_team_api.dart';
 import 'package:achievelab/teamlist/joinpop.dart';
 import 'package:achievelab/teamlist/teamlist_page.dart';
 import 'package:achievelab/teamlist/teamtext.dart';
@@ -8,7 +9,6 @@ import 'package:achievelab/widget/styledbutton.dart';
 import 'package:achievelab/widget/styledtext.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import '../api/join_team_api';
 import '../select_page.dart';
 
 class TeamInfo extends StatefulWidget {
