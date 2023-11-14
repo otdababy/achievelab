@@ -1,11 +1,14 @@
 
+import 'dart:convert';
+
 import 'package:achievelab/teamlist/joinpop.dart';
 import 'package:achievelab/teamlist/teamlist_page.dart';
 import 'package:achievelab/teamlist/teamtext.dart';
 import 'package:achievelab/widget/styledbutton.dart';
 import 'package:achievelab/widget/styledtext.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
+import '../api/join_team_api';
 import '../select_page.dart';
 
 class TeamInfo extends StatefulWidget {
@@ -47,7 +50,33 @@ class _TeamInfoState extends State<TeamInfo> {
   }
 
   bool clicked = false;
-
+  void handleJoinTeam(String userName, String teamName) async {
+    //GET request
+    try{
+      var a = await JoinTeamAPI.joinTeam(userName, teamName);
+      final body = json.decode(a.body.toString());
+      //result from GET
+      final result = body['result'];
+      print(result);
+      //Post 성공
+      if(result == "success"){
+        await showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              //ask score system api
+          return JoinPop(team: teamName,);
+        }
+        );
+      }
+      else{
+        //fail
+      }
+    }
+    catch(e) {
+      print('실패함');
+      print(e.toString());
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -102,13 +131,10 @@ class _TeamInfoState extends State<TeamInfo> {
                               child: TextButton(
                                 onPressed: () async {
                                   //send join request, show popup after joining,
-                                  await showDialog(
-                                      context: context,
-                                      builder: (BuildContext context) {
-                                        //ask score system api
-                                    return JoinPop(team: _name,);
-                                  }
-                                  );
+                                  final user = FirebaseAuth.instance.currentUser;
+                                  final userName = user!.displayName!;
+                                  handleJoinTeam(userName, _name);
+                                
                                 },
                                 child: Text(
                                   "Join",
