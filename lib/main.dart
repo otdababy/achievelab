@@ -5,9 +5,14 @@ import 'package:achievelab/widget/appbar.dart';
 import 'package:achievelab/widget/styledbutton.dart';
 import 'package:achievelab/widget/styledtext.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 void main() {
-  runApp(const MyApp());
+  Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform)
+      .then((value) => runApp(const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -47,26 +52,32 @@ class MyApp extends StatelessWidget {
 }
 
 class LoginPage extends StatefulWidget {
-
   @override
   _LoginPageState createState() => _LoginPageState();
 }
 
 class _LoginPageState extends State<LoginPage> {
   final _nameController = TextEditingController();
+  final _pwController = TextEditingController();
 
-  void login(String name){
-    //send name and then push to main page
-    Navigator.push(context, MaterialPageRoute(
-        builder: (_) => SelectPage(name)));
+  void login(String email, String password) {
+    // Handle Authorization
+
+    FirebaseAuth.instance
+        .signInWithEmailAndPassword(email: email, password: password)
+        .then((value) => {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (_) => SelectPage(value.user!.displayName!)))
+            })
+        .catchError((error) => print(error));
   }
-
 
   @override
   Widget build(BuildContext context) {
     //name field
-    var _nameField =
-    Container(
+    var _nameField = Container(
       width: 250,
       height: 60,
       decoration: BoxDecoration(
@@ -78,9 +89,8 @@ class _LoginPageState extends State<LoginPage> {
           child: Container(
             width: 210,
             child: TextField(
-              onChanged: (text){
-                setState(() {
-                });
+              onChanged: (text) {
+                setState(() {});
               },
               controller: _nameController,
               decoration: new InputDecoration(
@@ -99,25 +109,61 @@ class _LoginPageState extends State<LoginPage> {
         ),
       ),
     );
-
+    var _pwField = Container(
+      width: 250,
+      height: 60,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(40),
+        border: Border.all(color: Colors.grey, width: 1),
+      ),
+      child: Center(
+        child: Center(
+          child: Container(
+            width: 210,
+            child: TextField(
+              onChanged: (text) {
+                setState(() {});
+              },
+              controller: _pwController,
+              decoration: new InputDecoration(
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.white),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.white),
+                ),
+                hintText: 'Type your password',
+              ),
+              keyboardType: TextInputType.multiline,
+              maxLines: null,
+            ),
+          ),
+        ),
+      ),
+    );
 
     return Scaffold(
         appBar: PreferredSize(
-            preferredSize: const Size.fromHeight(100),
-            child: StyledAppBar()),
+            preferredSize: const Size.fromHeight(100), child: StyledAppBar()),
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               StyledText(text: "Welcome to Achieve Lab!", size: 40),
-              Container(height: 60,),
+              Container(
+                height: 60,
+              ),
               _nameField,
-              StyledButton(text: "Log In", width: 250, height: 60, press: (){
-                login(_nameController.text);})
+              _pwField,
+              StyledButton(
+                  text: "Log In",
+                  width: 250,
+                  height: 60,
+                  press: () {
+                    login(_nameController.text, _pwController.text);
+                  })
             ],
           ),
-        )   
-    );
-
+        ));
   }
 }

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:achievelab/widget/styledtext.dart';
 import '../select_page.dart';
 import '../profile/profile_page.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 
 class StyledAppBar extends StatelessWidget {
@@ -50,8 +51,11 @@ class StyledAppBar extends StatelessWidget {
             onSelected:(value){
               if(value == 0){
                 //move to my profile page, call API and get info
+                // Get username from auth
+                final user = FirebaseAuth.instance.currentUser;
+                final name = user!.displayName!;
                 Navigator.push(context, MaterialPageRoute(
-                    builder: (_) => ProfilePage("Chaemin")));
+                    builder: (_) => ProfilePage(name)));
               }else if(value == 1){
                 //move to leaderboard page, with my team, save which team he or she is on
                 Navigator.push(context, MaterialPageRoute(
