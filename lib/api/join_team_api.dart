@@ -3,6 +3,13 @@ import 'dart:ui';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+// JoinTeamAPI (teamName, userName) 
+  // socialCredit
+  // deposit
+  // failDeduction
+  // teamScore
+  // initialScore
+  // Increment
 
 
 class JoinTeamAPI {

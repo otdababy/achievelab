@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'package:achievelab/api/get_team_main_api.dart';
 import 'package:achievelab/profile/teamrec.dart';
 import 'package:achievelab/teamlist/teaminfo.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +15,7 @@ class ProfilePage extends StatefulWidget {
   ProfilePage(Map<dynamic,dynamic> info){
     _info = info;
   }
+
 
   @override
   State<ProfilePage> createState() => _ProfilePageState(_info);

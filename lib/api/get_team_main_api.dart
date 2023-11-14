@@ -66,8 +66,8 @@ class GetTeamMainAPI {
     Map<String, dynamic> teamMainInfo = {
       "total_points": a['total_points'],
       "description": a['description'],
-      "leaderboard": teamPoints,
-      "all_progress": progress,
+      "leaderboard": teamPoints, // 
+      "all_progress": progress, // userName : [true,false,...]
     };
 
     return teamMainInfo;
