@@ -73,7 +73,7 @@ class _JoinedTeamInfoState extends State<JoinedTeamInfo> {
         Container(
             // width: 600,
             // height: 90,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
                 color: Colors.grey,
                 borderRadius: BorderRadius.all(Radius.circular(15))
             ),
@@ -98,7 +98,7 @@ class _JoinedTeamInfoState extends State<JoinedTeamInfo> {
                     StyledText(text: _name, size: 20),
                   ],
                 ),
-                Spacer(),
+                const Spacer(),
                 Row(
                   children: [
                     StyledText(text: "$_members/8", size: 15),
@@ -114,13 +114,13 @@ class _JoinedTeamInfoState extends State<JoinedTeamInfo> {
                         height: 50,
                         child: TextButton(
                           onPressed: () async {
-                            //send join request, show popup after joining,
+                            //request team info API, get info
                             final Future<Map<dynamic, dynamic>> infop = handleTeam(_name);
                             Map<dynamic, dynamic> info = await infop;
                             Navigator.push(context, MaterialPageRoute(
-                              builder: (_) => TeamPage(info)));
+                              builder: (_) => TeamPage(info, )));
                           },
-                          child: Text(
+                          child: const Text(
                             "Enter",
                             textAlign: TextAlign.center,
                             style: TextStyle(
@@ -148,7 +148,7 @@ class _JoinedTeamInfoState extends State<JoinedTeamInfo> {
                   height: 160,
                   decoration: BoxDecoration(
                       color: Colors.grey.shade700,
-                      borderRadius: BorderRadius.all(Radius.circular(15))
+                      borderRadius: const BorderRadius.all(Radius.circular(15))
                   ),
                   child: Padding(
                     padding: const EdgeInsets.all(15.0),

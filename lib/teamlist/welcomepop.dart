@@ -27,12 +27,12 @@ class _WelcomePopState extends State<WelcomePop> {
   Widget build(BuildContext context) {
     return AlertDialog(
       title: Padding(
-        padding: EdgeInsets.only(top: (10.0)),
+        padding: const EdgeInsets.only(top: (10.0)),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
+            const Text(
               "Welcome!",
               textAlign: TextAlign.center,
               style: TextStyle(
@@ -43,7 +43,7 @@ class _WelcomePopState extends State<WelcomePop> {
               ),
             ),
             Container(height: 15,),
-            Text(
+            const Text(
               "You are now a member of",
               textAlign: TextAlign.center,
               style: TextStyle(
@@ -56,7 +56,7 @@ class _WelcomePopState extends State<WelcomePop> {
             Text(
               "[$_team]",
               textAlign: TextAlign.center,
-              style: TextStyle(
+              style: const TextStyle(
                   color: Colors.black,
                   fontFamily: 'SnowCrab',
                   fontSize: 17,
@@ -77,12 +77,12 @@ class _WelcomePopState extends State<WelcomePop> {
                 child: Container(
                     width: 235,
                     height: 40,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                         color: Colors.grey,
                         borderRadius: BorderRadius.all(Radius.circular(15))
                     ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(10.0),
+                    child: const Padding(
+                      padding: EdgeInsets.all(10.0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -109,12 +109,12 @@ class _WelcomePopState extends State<WelcomePop> {
                 child: Container(
                     width: 235,
                     height: 40,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                         color: Colors.grey,
                         borderRadius: BorderRadius.all(Radius.circular(15))
                     ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(10.0),
+                    child: const Padding(
+                      padding: EdgeInsets.all(10.0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [

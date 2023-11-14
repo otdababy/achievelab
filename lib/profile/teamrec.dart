@@ -3,14 +3,11 @@ import 'dart:convert';
 
 import 'package:achievelab/api/join_team_api.dart';
 import 'package:achievelab/teamlist/joinpop.dart';
-import 'package:achievelab/teamlist/teamlist_page.dart';
 import 'package:achievelab/teamlist/teamtext.dart';
-import 'package:achievelab/widget/styledbutton.dart';
 import 'package:achievelab/widget/styledtext.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-import '../select_page.dart';
 
 class TeamRec extends StatefulWidget {
   late String _name;
@@ -86,7 +83,7 @@ class _TeamRecState extends State<TeamRec> {
         Container(
             // width: 600,
             // height: 90,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
                 color: Colors.grey,
                 borderRadius: BorderRadius.all(Radius.circular(15))
             ),
@@ -111,7 +108,7 @@ class _TeamRecState extends State<TeamRec> {
                     StyledText(text: _name, size: 20),
                   ],
                 ),
-                Spacer(),
+                const Spacer(),
                 Row(
                   children: [
                     StyledText(text: "$_members/8", size: 15),
@@ -132,7 +129,7 @@ class _TeamRecState extends State<TeamRec> {
                                   final userName = user!.displayName!;
                                   handleTeam(userName, _name);
                           },
-                          child: Text(
+                          child: const Text(
                             "Join",
                             textAlign: TextAlign.center,
                             style: TextStyle(
@@ -160,7 +157,7 @@ class _TeamRecState extends State<TeamRec> {
                   height: 160,
                   decoration: BoxDecoration(
                       color: Colors.grey.shade700,
-                      borderRadius: BorderRadius.all(Radius.circular(15))
+                      borderRadius: const BorderRadius.all(Radius.circular(15))
                   ),
                   child: Padding(
                     padding: const EdgeInsets.all(15.0),

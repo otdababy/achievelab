@@ -1,12 +1,8 @@
 
-import 'dart:convert';
-import 'dart:js';
 
 import 'package:achievelab/api/get_teams_api.dart';
 import 'package:achievelab/teamlist/teamlist_page.dart';
 import 'package:flutter/material.dart';
-
-import '../select_page.dart';
 
 
 class InterestButton extends StatelessWidget {
@@ -54,7 +50,7 @@ class InterestButton extends StatelessWidget {
         child: Container(
             width: 170,
             height: 90,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
                 color: Colors.black,
                 borderRadius: BorderRadius.all(Radius.circular(15))
             ),
@@ -63,7 +59,7 @@ class InterestButton extends StatelessWidget {
               child: Text(
                 text,
                 textAlign: TextAlign.center,
-                style: TextStyle(
+                style: const TextStyle(
                     color: Colors.white,
                     // fontFamily: 'SnowCrab',
                     fontSize: 20,
