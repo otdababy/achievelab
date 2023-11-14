@@ -100,13 +100,13 @@ class _TeamContainerState extends State<TeamContainer> {
                         child: TextButton(
                           onPressed: () async {
                             //send join request, show popup after joining,
-                            await showDialog(
-                                context: context,
-                                builder: (BuildContext context) {
-                                  //ask score system api
-                                  return JoinPop(team: _name,);
-                                }
-                            );
+                            // await showDialog(
+                            //     context: context,
+                            //     builder: (BuildContext context) {
+                            //       //ask score system api
+                            //       return JoinPop(team: _name,);
+                            //     }
+                            // );
                           },
                           child: Text(
                             "Challenge",

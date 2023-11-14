@@ -4,24 +4,25 @@ import 'package:achievelab/widget/interestbutton.dart';
 import 'package:flutter/material.dart';
 import 'package:achievelab/widget/styledbutton.dart';
 import 'package:achievelab/widget/styledtext.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 
 class TeamPage extends StatefulWidget {
-  late String _name;
-  TeamPage(String name){
-    _name = name;
+  late Map<dynamic, dynamic> _info;
+  TeamPage(Map<dynamic, dynamic> info){
+    _info = info;
   }
   
   @override
-  State<TeamPage> createState() => _TeamPageState(_name);
+  State<TeamPage> createState() => _TeamPageState(_info);
 }
 
 class _TeamPageState extends State<TeamPage> {
-  late String _name;
+  late Map<dynamic, dynamic> _info;
 
-  _TeamPageState(String name) {
-    _name = name;
+  _TeamPageState(Map<dynamic, dynamic> info) {
+    _info = info;
   }
-
 
   @override
   Widget build(BuildContext context) {

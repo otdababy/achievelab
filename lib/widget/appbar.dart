@@ -1,4 +1,5 @@
 
+import 'package:achievelab/api/get_profile_api.dart';
 import 'package:achievelab/leaderboard/leaderboard_page.dart';
 import 'package:flutter/material.dart';
 import 'package:achievelab/widget/styledtext.dart';
@@ -13,8 +14,22 @@ class StyledAppBar extends StatelessWidget {
   }) : super(key: key);
 
 
-  @override
+  Future<Map<dynamic, dynamic>> handleProfile(String userName) async {
+    //GET request
+    try{
+      Map<dynamic, dynamic> profileInfo = {};
+      profileInfo = await GetProfileAPI.getProfile(userName);
+      // as List<Map<String, dynamic>>;
+      return profileInfo;
+    }
+    catch(e) {
+      print('실패함');
+      print(e.toString());
+      return {};
+    }
+  }
 
+  @override
   Widget build(BuildContext context) {
     return AppBar(
       backgroundColor: Colors.white,
@@ -48,18 +63,22 @@ class StyledAppBar extends StatelessWidget {
                 ),
               ];
             },
-            onSelected:(value){
+            onSelected:(value) async {
               if(value == 0){
                 //move to my profile page, call API and get info
                 // Get username from auth
                 final user = FirebaseAuth.instance.currentUser;
                 final name = user!.displayName!;
+                final Future<Map<dynamic,dynamic>> info = handleProfile(name);
+                Map<dynamic,dynamic> profileInfo = await info;
                 Navigator.push(context, MaterialPageRoute(
-                    builder: (_) => ProfilePage(name)));
+                    builder: (_) => ProfilePage(profileInfo)));
+
               }else if(value == 1){
                 //move to leaderboard page, with my team, save which team he or she is on
                 Navigator.push(context, MaterialPageRoute(
                     builder: (_) => LeaderboardPage("Running")));
+                    
               }else if(value == 2){
                 //move to team selection page, but with a popup saying you can't join more than one team for beta version.
                 Navigator.push(context, MaterialPageRoute(

@@ -6,16 +6,27 @@ import 'package:flutter/material.dart';
 import '../widget/styledtext.dart';
 
 
-class JoinPop extends StatelessWidget {
-  const JoinPop({
-    Key? key,
-    required this.team,
-    //social point, deposit, deduction,
-    // team score, starting score, increment,
-  }) : super(key: key);
+class JoinPop extends StatefulWidget {
+  late Map<dynamic, dynamic> _joined; 
+  late String _name;
+  JoinPop(Map<dynamic, dynamic> joined, String name){
+    _joined = joined;
+    _name = name;
+  }
 
-  final String team;
+  @override
+  State<JoinPop> createState() => _JoinPopState(_joined, _name);
+}
+
+class _JoinPopState extends State<JoinPop> {
   // final GestureTapCallback press;
+  late Map<dynamic, dynamic> _joined; 
+  late String _name;
+  _JoinPopState(Map<dynamic, dynamic> joined, String name) {
+    _joined = joined;
+    _name = name;
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +58,7 @@ class JoinPop extends StatelessWidget {
               ),
             ),
             Text(
-              "[$team]",
+              _name,
               textAlign: TextAlign.center,
               style: TextStyle(
                   color: Colors.black,
@@ -78,10 +89,9 @@ class JoinPop extends StatelessWidget {
                   fontWeight: FontWeight.w700
               ),
             ),
-            JoinPopCont(text: "Your social points:",points: 10000),
-            JoinPopCont(text: "Deposit required:",points: 100),
-            JoinPopCont(text: "If you fail for a day",points: -30),
-
+            JoinPopCont(text: "Your social points:",points: _joined['socialCredit']),
+            JoinPopCont(text: "Deposit required:",points: _joined['deposit']),
+            JoinPopCont(text: "If you fail for a day",points: _joined['failDeduction']),
 
           ],
         ),
@@ -102,7 +112,7 @@ class JoinPop extends StatelessWidget {
                     context: context,
                     builder: (BuildContext context) {
                   //ask score system api
-                  return TeamPop(team: team, indscore: 0, teamscore: 80, inc: 3);
+                  return TeamPop(team: _name, indscore: _joined['initialScore'], teamscore: _joined['teamScore'], inc: _joined['increment']);
                 }
                 );
               },
