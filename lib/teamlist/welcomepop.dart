@@ -2,6 +2,7 @@
 import 'package:achievelab/leaderboard/leaderboard_page.dart';
 import 'package:achievelab/teamlist/popcontainer.dart';
 import 'package:achievelab/teamlist/teamscorepop.dart';
+import 'package:achievelab/teamroom/team_page.dart';
 import 'package:flutter/material.dart';
 
 import '../widget/styledtext.dart';
@@ -105,7 +106,13 @@ class _WelcomePopState extends State<WelcomePop> {
             Padding(
               padding: const EdgeInsets.all(3.0),
               child: GestureDetector(
-                // onTap: ,
+                onTap: (){
+                  //which type of leaderboard, push
+                  setState(() {
+                    Navigator.push(context, MaterialPageRoute(
+                        builder: (_) => TeamPage("Running")));
+                  });
+                },
                 child: Container(
                     width: 235,
                     height: 40,
