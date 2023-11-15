@@ -57,8 +57,8 @@ class _TeamInfoState extends State<TeamInfo> {
       var a = await JoinTeamAPI.joinTeam(userName, teamName);
       final body = json.decode(a.body.toString());
       //result from GET
-      final result = body['result'];
-      print(result);
+      final result = body;
+      // print(result);
       Map<dynamic, dynamic> joined = result;
       // as List<Map<String, dynamic>>;
       await showDialog(

@@ -23,7 +23,6 @@ class JoinTeamAPI {
         body: jsonEncode({
           'teamName' : teamName,
           'userName' : userName,
-          
         })
     );
     return a;

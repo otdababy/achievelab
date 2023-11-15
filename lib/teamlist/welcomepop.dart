@@ -1,10 +1,13 @@
 
 import 'dart:convert';
 
+import 'package:achievelab/api/get_chat_api.dart';
 import 'package:achievelab/api/get_rank_api.dart';
+import 'package:achievelab/api/get_team_main_api.dart';
 import 'package:achievelab/leaderboard/leaderboard_page.dart';
 import 'package:achievelab/teamlist/popcontainer.dart';
 import 'package:achievelab/teamlist/teamscorepop.dart';
+import 'package:achievelab/teamroom/team_page.dart';
 import 'package:flutter/material.dart';
 
 import '../widget/styledtext.dart';
@@ -32,7 +35,7 @@ class _WelcomePopState extends State<WelcomePop> {
       var a = await GetRankAPI.LeaderBoardAPI();
       final body = json.decode(a.body.toString());
       //result from GET
-      final result = body;
+      final result = body['LeaderBoardInfos'];
       // print(result);
       List<dynamic> rank = result;
       // as List<Map<String, dynamic>>;
@@ -44,6 +47,42 @@ class _WelcomePopState extends State<WelcomePop> {
       return [];
     }
   }
+
+  Future<Map<dynamic, dynamic>> handleTeam(String teamName) async {
+    //GET request
+    try{
+      Map<dynamic, dynamic> teamInfo = {};
+      teamInfo = await GetTeamMainAPI.getTeamMain(teamName);
+      // as List<Map<String, dynamic>>;
+      return teamInfo;
+    }
+    catch(e) {
+      print('실패함');
+      print(e.toString());
+      return {};
+    }
+  }
+
+  Future<List<dynamic>> getChat(String teamName) async {
+    //GET request
+    try{
+      var a = await GetChatAPI.getChat(teamName);
+      final body = json.decode(a.body.toString());
+      //result from GET
+      final result = body['chats'];
+      // print(result);
+      List<dynamic> chats = result;
+      // as List<Map<String, dynamic>>;
+      return chats;
+    }
+    catch(e) {
+      print('실패함');
+      print(e.toString());
+      return [];
+    }
+  }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -129,7 +168,16 @@ class _WelcomePopState extends State<WelcomePop> {
             Padding(
               padding: const EdgeInsets.all(3.0),
               child: GestureDetector(
-                // onTap: ,
+                onTap: () async {
+                  final Future<Map<dynamic, dynamic>> infop = handleTeam(_team);
+                            Map<dynamic, dynamic> info = await infop;
+
+                            final Future<List<dynamic>> chatp = getChat(_team);
+                            List<dynamic> chat = await chatp;
+
+                            Navigator.push(context, MaterialPageRoute(
+                              builder: (_) => TeamPage(info, chat)));
+                },
                 child: Container(
                     width: 235,
                     height: 40,

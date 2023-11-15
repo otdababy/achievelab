@@ -16,7 +16,6 @@ class PostChatAPI {
           'teamName' : teamName,
           'userName' : userName,
           'message' : message,
-          
         })
     );
     return a;

@@ -402,7 +402,7 @@ class _TeamPageState extends State<TeamPage> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              "$i",
+                              "${i+1}",
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                   color: Colors.black,

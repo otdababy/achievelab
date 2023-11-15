@@ -261,8 +261,11 @@ class _SignUpPageState extends State<SignUpPage> {
                             );
                           });
                     }
-                    signup(_idController.text, _pwController.text,
+                    else{
+                      signup(_idController.text, _pwController.text,
                         _nameController.text);
+                    }
+                    
                   })
             ],
           ),
