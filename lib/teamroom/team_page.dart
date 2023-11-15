@@ -69,10 +69,10 @@ class _TeamPageState extends State<TeamPage> {
     }
   }
 
-  // final user1 = FirebaseAuth.instance.currentUser!.displayName;
-  // final name = user1!.displayName!;
+  final user = FirebaseAuth.instance.currentUser!.displayName;
 
   final _chatController = TextEditingController();
+  final ScrollController _controller = ScrollController();
 
   @override
   Widget build(BuildContext context) {
@@ -188,26 +188,53 @@ class _TeamPageState extends State<TeamPage> {
                                           ),
                                     ),
                                     Container(width: 50,),
-                                    Container(
-                                      width: 80,
-                                      height: 50,
-                                      decoration: BoxDecoration(
-                                        color: Colors.blue,
-                                        borderRadius: BorderRadius.all(Radius.circular(15)),            
+                                    for(int i=0; i < _info['all_progress'][user].length; i++)
+                                    _info['all_progress'][user][i] == true ?
+                                    Padding(
+                                      padding: const EdgeInsets.all(10.0),
+                                      child: Container(
+                                        width: 80,
+                                        height: 50,
+                                        decoration: BoxDecoration(
+                                          color: Colors.blue,
+                                          borderRadius: BorderRadius.all(Radius.circular(15)),            
+                                        ),
+                                        child: Center(
+                                          child: Text(
+                                              "O",
+                                              textAlign: TextAlign.center,
+                                              style: TextStyle(
+                                                  color: Colors.white,
+                                                  // fontFamily: 'SnowCrab',
+                                                  fontSize: 20,
+                                                  fontWeight: FontWeight.w900
+                                              ),
+                                                                            ),
+                                        ),
                                       ),
-                                      child: Center(
-                                        child: Text(
-                                            "O",
-                                            textAlign: TextAlign.center,
-                                            style: TextStyle(
-                                                color: Colors.white,
-                                                // fontFamily: 'SnowCrab',
-                                                fontSize: 20,
-                                                fontWeight: FontWeight.w900
-                                            ),
-                                                                          ),
+                                    ) : Padding(
+                                      padding: const EdgeInsets.all(10.0),
+                                      child: Container(
+                                        width: 80,
+                                        height: 50,
+                                        decoration: BoxDecoration(
+                                          color: Colors.red.shade800,
+                                          borderRadius: BorderRadius.all(Radius.circular(15)),            
+                                        ),
+                                        child: Center(
+                                          child: Text(
+                                              "X",
+                                              textAlign: TextAlign.center,
+                                              style: TextStyle(
+                                                  color: Colors.white,
+                                                  // fontFamily: 'SnowCrab',
+                                                  fontSize: 20,
+                                                  fontWeight: FontWeight.w900
+                                              ),
+                                                                            ),
+                                        ),
                                       ),
-                                    ),
+                                    )
                                   
                                   ],
                                 ),
@@ -235,7 +262,9 @@ class _TeamPageState extends State<TeamPage> {
                     color: Colors.grey.shade300,
                     borderRadius: BorderRadius.all(Radius.circular(15)),            
                   ),
-                  child: SingleChildScrollView(child: Column(children: [
+                  child: SingleChildScrollView(
+                    controller: _controller,
+                    child: Column(children: [
                     for(var i =0; i<_chat.length; i++)
                       _chat[i][0] == FirebaseAuth.instance.currentUser!.displayName ? 
                       myChat(_chat[i][0], _chat[i][1])
@@ -281,6 +310,7 @@ class _TeamPageState extends State<TeamPage> {
                         List<dynamic> chat = await chatp;
                         setState(() {
                           _chat = chat;
+                          _controller.jumpTo(_controller.position.maxScrollExtent);
                         });
                       },
                       child: Container(width: 80,
