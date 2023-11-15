@@ -1,4 +1,7 @@
 
+import 'dart:convert';
+
+import 'package:achievelab/api/get_rank_api.dart';
 import 'package:achievelab/leaderboard/leaderboard_page.dart';
 import 'package:achievelab/teamlist/popcontainer.dart';
 import 'package:achievelab/teamlist/teamscorepop.dart';
@@ -21,6 +24,25 @@ class _WelcomePopState extends State<WelcomePop> {
 
   _WelcomePopState(String team) {
     _team = team;
+  }
+
+  Future<List<dynamic>> getRank() async {
+    //GET request
+    try{
+      var a = await GetRankAPI.LeaderBoardAPI();
+      final body = json.decode(a.body.toString());
+      //result from GET
+      final result = body;
+      // print(result);
+      List<dynamic> rank = result;
+      // as List<Map<String, dynamic>>;
+      return rank;
+    }
+    catch(e) {
+      print('실패함');
+      print(e.toString());
+      return [];
+    }
   }
 
   @override
@@ -67,9 +89,11 @@ class _WelcomePopState extends State<WelcomePop> {
             GestureDetector(
               onTap: (){
                 //which type of leaderboard, push
-                setState(() {
-                  Navigator.push(context, MaterialPageRoute(
-                      builder: (_) => LeaderboardPage("Running")));
+                setState(() async {
+                  final Future<List<dynamic>> rankp = getRank();
+                List<dynamic> rank = await rankp;
+                Navigator.push(context, MaterialPageRoute(
+                    builder: (_) => LeaderboardPage(rank)));
                 });
               },
               child: Padding(

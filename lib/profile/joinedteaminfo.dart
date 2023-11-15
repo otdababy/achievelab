@@ -74,7 +74,7 @@ class _JoinedTeamInfoState extends State<JoinedTeamInfo> {
       var a = await GetChatAPI.getChat(teamName);
       final body = json.decode(a.body.toString());
       //result from GET
-      final result = body;
+      final result = body['chats'];
       // print(result);
       List<dynamic> chats = result;
       // as List<Map<String, dynamic>>;

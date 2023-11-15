@@ -11,24 +11,24 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '../select_page.dart';
 
-class ChatBox extends StatefulWidget {
+class myChat extends StatefulWidget {
   late String _name;
   late String _goal;
-  ChatBox(String name, String goal, {super.key}){
+  myChat(String name, String goal, {super.key}){
     _name = name;
     _goal = goal;
   }
 
 
   @override
-  _ChatBoxState createState() => _ChatBoxState(_name,_goal);
+  _myChatState createState() => _myChatState(_name,_goal);
 }
 
-class _ChatBoxState extends State<ChatBox> {
+class _myChatState extends State<myChat> {
   late String _name;
   late String _goal;
 
-  _ChatBoxState(String name, String goal) {
+  _myChatState(String name, String goal) {
     _name = name;
     _goal = goal;
   }
@@ -40,12 +40,12 @@ class _ChatBoxState extends State<ChatBox> {
       child: Column(
         children: [
           Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               Row(
-                mainAxisAlignment: MainAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  Container(width: 5,),
+                  
                   Text(
                       _name,
                       textAlign: TextAlign.center,
@@ -56,7 +56,7 @@ class _ChatBoxState extends State<ChatBox> {
                           fontWeight: FontWeight.w500
                       ),
                     ),
-                    
+                    Container(width: 5,),
                 ],
               ),
               Container(height: 3,),
@@ -64,7 +64,7 @@ class _ChatBoxState extends State<ChatBox> {
                   // width: 700,
                   // height: 0,
                   decoration: BoxDecoration(
-                      color: Colors.grey,
+                      color: Colors.blue,
                       borderRadius: BorderRadius.all(Radius.circular(15))
                   ),
                   child: Padding(
@@ -73,7 +73,7 @@ class _ChatBoxState extends State<ChatBox> {
                     _goal,
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                        color: Colors.black,
+                        color: Colors.white,
                         // fontFamily: 'SnowCrab',
                         fontSize: 18,
                         fontWeight: FontWeight.w500

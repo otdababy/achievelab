@@ -1,5 +1,8 @@
 
+import 'dart:convert';
+
 import 'package:achievelab/api/get_profile_api.dart';
+import 'package:achievelab/api/get_rank_api.dart';
 import 'package:achievelab/leaderboard/leaderboard_page.dart';
 import 'package:flutter/material.dart';
 import 'package:achievelab/widget/styledtext.dart';
@@ -26,6 +29,25 @@ class StyledAppBar extends StatelessWidget {
       print('실패함');
       print(e.toString());
       return {};
+    }
+  }
+
+  Future<List<dynamic>> getRank() async {
+    //GET request
+    try{
+      var a = await GetRankAPI.LeaderBoardAPI();
+      final body = json.decode(a.body.toString());
+      //result from GET
+      final result = body['LeaderBoardInfos'];
+      // print(result);
+      List<dynamic> rank = result;
+      // as List<Map<String, dynamic>>;
+      return rank;
+    }
+    catch(e) {
+      print('실패함');
+      print(e.toString());
+      return [];
     }
   }
 
@@ -76,8 +98,10 @@ class StyledAppBar extends StatelessWidget {
 
               }else if(value == 1){
                 //move to leaderboard page, with my team, save which team he or she is on
+                final Future<List<dynamic>> rankp = getRank();
+                List<dynamic> rank = await rankp;
                 Navigator.push(context, MaterialPageRoute(
-                    builder: (_) => LeaderboardPage("Running")));
+                    builder: (_) => LeaderboardPage(rank)));
                     
               }else if(value == 2){
                 //move to team selection page, but with a popup saying you can't join more than one team for beta version.

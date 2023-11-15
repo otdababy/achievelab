@@ -4,6 +4,7 @@ import 'package:achievelab/api/get_chat_api.dart';
 import 'package:achievelab/api/post_chat_api.dart';
 import 'package:achievelab/teamlist/teamtext.dart';
 import 'package:achievelab/teamroom/chatbox.dart';
+import 'package:achievelab/teamroom/mychat.dart';
 import 'package:achievelab/widget/appbar.dart';
 import 'package:achievelab/widget/interestbutton.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -55,7 +56,7 @@ class _TeamPageState extends State<TeamPage> {
       var a = await GetChatAPI.getChat(teamName);
       final body = json.decode(a.body.toString());
       //result from GET
-      final result = body;
+      final result = body['chats'];
       // print(result);
       List<dynamic> chats = result;
       // as List<Map<String, dynamic>>;
@@ -68,7 +69,8 @@ class _TeamPageState extends State<TeamPage> {
     }
   }
 
-
+  // final user1 = FirebaseAuth.instance.currentUser!.displayName;
+  // final name = user1!.displayName!;
 
   final _chatController = TextEditingController();
 
@@ -235,7 +237,9 @@ class _TeamPageState extends State<TeamPage> {
                   ),
                   child: SingleChildScrollView(child: Column(children: [
                     for(var i =0; i<_chat.length; i++)
-                      ChatBox(_chat[i][0], _chat[i][1])
+                      _chat[i][0] == FirebaseAuth.instance.currentUser!.displayName ? 
+                      myChat(_chat[i][0], _chat[i][1])
+                      : ChatBox(_chat[i][0], _chat[i][1])
                   ],)),
                 ),
                 Container(height: 10,),
@@ -269,13 +273,13 @@ class _TeamPageState extends State<TeamPage> {
                     ),
                     Container(width: 10,),
                     GestureDetector(
-                      onTap: (){
+                      onTap: () async {
                         final user = FirebaseAuth.instance.currentUser;
                         final name = user!.displayName!;
                         postChat(_info['team_name'], name, _chatController.text);
-                        setState(() async {
-                          final Future<List<dynamic>> chatp = getChat(_info['team_name']);
-                          List<dynamic> chat = await chatp;
+                        final Future<List<dynamic>> chatp = getChat(_info['team_name']);
+                        List<dynamic> chat = await chatp;
+                        setState(() {
                           _chat = chat;
                         });
                       },

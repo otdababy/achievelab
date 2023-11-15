@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:achievelab/widget/styledtext.dart';
 
 class LeaderboardPage extends StatefulWidget {
-  late String _name;
-  LeaderboardPage(String name){
+  late List<dynamic> _name;
+  LeaderboardPage(List<dynamic> name){
     _name = name;
   }
 
@@ -15,9 +15,9 @@ class LeaderboardPage extends StatefulWidget {
 }
 
 class _LeaderboardPageState extends State<LeaderboardPage> {
-  late String _name;
+  late List<dynamic> _name;
   //
-  _LeaderboardPageState(String name) {
+  _LeaderboardPageState(List<dynamic> name) {
     _name = name;
   }
 
@@ -45,22 +45,15 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              StyledText(text: "$_name Challenge 2023 Week 40", size: 30),
+              StyledText(text: "Waking Up Challenge 2023 November", size: 30),
               Container(height: 15,),
+              for(int i=0; i< _name.length;i++)
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  StyledText(text: "1", size: 20),
+                  StyledText(text: "$i", size: 20),
                   Container(width: 5,),
-                  TeamContainer("AchieveLab Team", 85),
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  StyledText(text: "2", size: 20),
-                  Container(width: 5,),
-                  TeamContainer("AchieveLab Team", 85),
+                  TeamContainer("${_name[i]['teamName']}", _name[i]['totalPoints']),
                 ],
               ),
 
