@@ -90,21 +90,16 @@ class _LoginPageState extends State<LoginPage> {
     // Handle Authorization
     FirebaseAuth.instance
         .signInWithEmailAndPassword(email: email, password: password)
-        .then((value) => {
-          
-              // Navigator.push(
-              //     context,
-              //     MaterialPageRoute(
-              //         builder: (_) => SelectPage(value.user!.displayName!)))
+        .then((value) async {
+                final name = FirebaseAuth.instance.currentUser!.displayName!;
+                print(FirebaseAuth.instance.currentUser!);
+                final Future<Map<dynamic,dynamic>> info = handleProfile(name);
+                Map<dynamic,dynamic> profileInfo = await info;
+                Navigator.push(context, MaterialPageRoute(
+                          builder: (_) => ProfilePage(profileInfo)));
             })
         .catchError((error) => print(error));
         
-    final user = FirebaseAuth.instance.currentUser;
-    final name = user!.displayName!;
-    final Future<Map<dynamic,dynamic>> info = handleProfile(name);
-    Map<dynamic,dynamic> profileInfo = await info;
-    Navigator.push(context, MaterialPageRoute(
-              builder: (_) => ProfilePage(profileInfo)));
   }
 
   @override
