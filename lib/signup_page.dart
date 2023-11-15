@@ -93,15 +93,8 @@ class _SignUpPageState extends State<SignUpPage> {
 
       print("new user ${displayName} is written");
 
-      Map<String, dynamic> profileInfo = {
-        "name": displayName,
-        "tier": "Bronze",
-        "social_credit": 100,
-        "joining_teams": [],
-      };
-
       Navigator.push(
-          context, MaterialPageRoute(builder: (_) => ProfilePage(profileInfo)));
+          context, MaterialPageRoute(builder: (_) => SelectPage(name)));
     });
 
     // Handle Authorization
