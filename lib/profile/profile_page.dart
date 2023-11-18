@@ -53,11 +53,12 @@ class _ProfilePageState extends State<ProfilePage> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         //Circular profile picture
-                        const CircleAvatar(
+                        CircleAvatar(
                           radius: 100.0,
-                          // backgroundImage:
-                          // NetworkImage("${snapshot.data.hitsList[index].previewUrl}"),
                           backgroundColor: Colors.grey,
+                          child: Image.asset('assets/profile.png'),
+                          
+                          
                         ),
                         Container(height: 10,),
                         StyledText(text: _info["name"], size: 25),
@@ -194,6 +195,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                   Container(height: 20,),
                                   TeamRec("HurryUp", "Hurry up and start your day",
                              "11/1-11/31", "5PM, Every Sunday","500 points, 30 points deducted per failure", 7, ),
+                                  // Container(height: 10,),
                                   TeamRec("Korean Early Birds", "Let's go everyone!",
                              "11/1-11/31", "5PM, Every Sunday","500 points, 30 points deducted per failure", 7, ),
                                 
