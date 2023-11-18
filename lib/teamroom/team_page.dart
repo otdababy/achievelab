@@ -116,6 +116,17 @@ class _TeamPageState extends State<TeamPage> {
       return success;
   }
 
+  void scrollDown(){
+    var scrollPosition = _controller.position;
+    if (scrollPosition.viewportDimension < scrollPosition.maxScrollExtent) {
+      _controller.animateTo(
+        scrollPosition.maxScrollExtent,
+        duration: new Duration(milliseconds: 10),
+        curve: Curves.easeOut,
+      );
+    }
+  }
+
   final user = FirebaseAuth.instance.currentUser!.displayName;
 
   final _chatController = TextEditingController();
@@ -125,14 +136,8 @@ class _TeamPageState extends State<TeamPage> {
   @override
   void initState() {
     super.initState();
-    var scrollPosition = _controller.position;
-    if (scrollPosition.viewportDimension < scrollPosition.maxScrollExtent) {
-      _controller.animateTo(
-        scrollPosition.maxScrollExtent,
-        duration: new Duration(milliseconds: 200),
-        curve: Curves.easeOut,
-      );
-    }
+    WidgetsBinding.instance
+        .addPostFrameCallback((_) => scrollDown());
   }
 
   @override

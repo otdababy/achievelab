@@ -90,8 +90,8 @@ class _TeamRecState extends State<TeamRec> {
                 },
           child: Container(
               // width: 600,
-              // height: 90,
-              decoration: const BoxDecoration(
+              height: 90,
+              decoration:  BoxDecoration(
                   color: Colors.grey,
                   borderRadius: BorderRadius.all(Radius.circular(15))
               ),

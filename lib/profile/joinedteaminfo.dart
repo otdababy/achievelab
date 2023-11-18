@@ -109,7 +109,7 @@ class _JoinedTeamInfoState extends State<JoinedTeamInfo> {
                 },
           child: Container(
               // width: 600,
-              // height: 90,
+              height: 90,
               decoration: const BoxDecoration(
                   color: Colors.grey,
                   borderRadius: BorderRadius.all(Radius.circular(15))

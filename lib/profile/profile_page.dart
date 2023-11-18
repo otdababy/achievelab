@@ -195,6 +195,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                   Container(height: 20,),
                                   TeamRec("HurryUp", "Hurry up and start your day",
                              "11/1-11/31", "5PM, Every Sunday","500 points, 30 points deducted per failure", 7, ),
+                                  // Container(height: 10,),
                                   TeamRec("Korean Early Birds", "Let's go everyone!",
                              "11/1-11/31", "5PM, Every Sunday","500 points, 30 points deducted per failure", 7, ),
                                 
