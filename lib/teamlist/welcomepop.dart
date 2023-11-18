@@ -87,6 +87,7 @@ class _WelcomePopState extends State<WelcomePop> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
+      backgroundColor: Colors.white,
       title: Padding(
         padding: const EdgeInsets.only(top: (10.0)),
         child: Column(
@@ -132,7 +133,7 @@ class _WelcomePopState extends State<WelcomePop> {
                   final Future<List<dynamic>> rankp = getRank();
                 List<dynamic> rank = await rankp;
                 Navigator.push(context, MaterialPageRoute(
-                    builder: (_) => LeaderboardPage(rank)));
+                    builder: (_) => LeaderboardPage("Iron",0,rank)));
                 });
               },
               child: Padding(
@@ -176,7 +177,7 @@ class _WelcomePopState extends State<WelcomePop> {
                             List<dynamic> chat = await chatp;
 
                             Navigator.push(context, MaterialPageRoute(
-                              builder: (_) => TeamPage(info, chat)));
+                              builder: (_) => TeamPage("Iron",0,info, chat)));
                 },
                 child: Container(
                     width: 235,

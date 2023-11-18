@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'package:achievelab/api/join_team_api.dart';
 import 'package:achievelab/teamlist/joinpop.dart';
 import 'package:achievelab/teamlist/teamtext.dart';
+import 'package:achievelab/teamlist/teamtitle.dart';
 import 'package:achievelab/widget/styledtext.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -164,10 +165,34 @@ class _TeamRecState extends State<TeamRec> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        TeamText(text: "Goal: $_goal", size: 15),
-                        TeamText(text: "Duration: $_duration", size: 15),
-                        TeamText(text: "Meeting: $_time", size: 15),
-                        TeamText(text: "Deposit: $_deposit", size: 15),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            TeamTitle(text: "Goal: ", size: 15),
+                            TeamText(text: '$_goal', size: 15),
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            TeamTitle(text: "Duration: ", size: 15),
+                            TeamText(text: '$_duration', size: 15),
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            TeamTitle(text: "Meeting: ", size: 15),
+                            TeamText(text: '$_time', size: 15),
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            TeamTitle(text: "Deposit: ", size: 15),
+                            TeamText(text: '$_deposit', size: 15),
+                          ],
+                        ),
                       ],
                     ),
                   ),

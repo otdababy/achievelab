@@ -137,7 +137,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 ),
                 hintText: 'Type your email',
               ),
-              keyboardType: TextInputType.multiline,
+              keyboardType: TextInputType.emailAddress,
               maxLines: null,
             ),
           ),
@@ -169,7 +169,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 ),
                 hintText: 'Type your password',
               ),
-              keyboardType: TextInputType.multiline,
+              keyboardType: TextInputType.visiblePassword,
               maxLines: null,
             ),
           ),
@@ -202,7 +202,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 ),
                 hintText: 'Type your nickname',
               ),
-              keyboardType: TextInputType.multiline,
+              keyboardType: TextInputType.name,
               maxLines: null,
             ),
           ),
@@ -257,7 +257,7 @@ class _SignUpPageState extends State<SignUpPage> {
                             //ask score system api
                             return Popup(
                               title:
-                                  "Nickname should be at least 4 characters long",
+                                  "Nickname should be at least 5 characters long",
                             );
                           });
                     }

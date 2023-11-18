@@ -6,23 +6,23 @@ import 'package:flutter/material.dart';
 import '../widget/styledtext.dart';
 
 
-class JoinPop extends StatefulWidget {
+class ProgressPop extends StatefulWidget {
   late Map<dynamic, dynamic> _joined; 
   late String _name;
-  JoinPop(Map<dynamic, dynamic> joined, String name){
+  ProgressPop(Map<dynamic, dynamic> joined, String name){
     _joined = joined;
     _name = name;
   }
 
   @override
-  State<JoinPop> createState() => _JoinPopState(_joined, _name);
+  State<ProgressPop> createState() => _ProgressPopState(_joined, _name);
 }
 
-class _JoinPopState extends State<JoinPop> {
+class _ProgressPopState extends State<ProgressPop> {
   // final GestureTapCallback press;
   late Map<dynamic, dynamic> _joined; 
   late String _name;
-  _JoinPopState(Map<dynamic, dynamic> joined, String name) {
+  _ProgressPopState(Map<dynamic, dynamic> joined, String name) {
     _joined = joined;
     _name = name;
   }
@@ -39,7 +39,7 @@ class _JoinPopState extends State<JoinPop> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "Let's Go!",
+              "Good Job!",
               textAlign: TextAlign.center,
               style: TextStyle(
                   color: Colors.black,
@@ -49,7 +49,7 @@ class _JoinPopState extends State<JoinPop> {
               ),
             ),
             Text(
-              "You are now a member of",
+              "You just contributed the following!",
               textAlign: TextAlign.center,
               style: TextStyle(
                   color: Colors.black,
@@ -59,7 +59,7 @@ class _JoinPopState extends State<JoinPop> {
               ),
             ),
             Text(
-              _name,
+              "Rank ${_joined['prevRank']}th place -> ${_joined['curRank']}th place",
               textAlign: TextAlign.center,
               style: TextStyle(
                   color: Colors.black,
@@ -70,7 +70,7 @@ class _JoinPopState extends State<JoinPop> {
             ),
             Container(height: 30,),
             Text(
-              "Check the below carefully",
+              "Score: ${_joined['prevScore']}pts -> ${_joined['curScore']}pts",
               textAlign: TextAlign.center,
               style: TextStyle(
                   color: Colors.red,
@@ -81,18 +81,15 @@ class _JoinPopState extends State<JoinPop> {
             ),
             Container(height: 5,),
             Text(
-              "Deposit System",
+              "Current score of [$_name]: ${_joined['prevTotalScore']}pts -> ${_joined['curTotalScore']}pts",
               textAlign: TextAlign.center,
               style: TextStyle(
-                  color: Colors.black,
+                  color: Colors.red,
                   fontFamily: 'SnowCrab',
-                  fontSize: 12,
+                  fontSize: 15,
                   fontWeight: FontWeight.w700
               ),
             ),
-            JoinPopCont(text: "Your social points:",points: _joined['socialCredit']),
-            JoinPopCont(text: "Deposit required:",points: _joined['deposit']),
-            JoinPopCont(text: "If you fail for a day",points: _joined['failDeduction']),
 
           ],
         ),
@@ -109,13 +106,7 @@ class _JoinPopState extends State<JoinPop> {
               ),
               onPressed: () async {
                 Navigator.of(context).pop();
-                await showDialog(
-                    context: context,
-                    builder: (BuildContext context) {
-                  //ask score system api
-                  return TeamPop(team: _name, indscore: _joined['initialScore'], teamscore: _joined['teamScore'], inc: _joined['increment']);
-                }
-                );
+                
               },
               child: Text('Confirm', style: TextStyle(fontFamily: 'SnowCrab',
                   fontWeight: FontWeight.w700,

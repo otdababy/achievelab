@@ -66,50 +66,48 @@ class StyledAppBar extends StatelessWidget {
       ),
       actions: [
 
-        PopupMenuButton(
-          // add icon, by default "3 dot" icon
-          // icon: Icon(Icons.book)
-            itemBuilder: (context){
-              return [
-                PopupMenuItem<int>(
-                  value: 0,
-                  child: Text("My Profile"),
-                ),
-                PopupMenuItem<int>(
-                  value: 1,
-                  child: Text("Leaderboard"),
-                ),
-                PopupMenuItem<int>(
-                  value: 2,
-                  child: Text("Join new teams"),
-                ),
-              ];
-            },
-            onSelected:(value) async {
-              if(value == 0){
-                //move to my profile page, call API and get info
-                // Get username from auth
-                final user = FirebaseAuth.instance.currentUser;
-                final name = user!.displayName!;
-                final Future<Map<dynamic,dynamic>> info = handleProfile(name);
-                Map<dynamic,dynamic> profileInfo = await info;
-                Navigator.push(context, MaterialPageRoute(
-                    builder: (_) => ProfilePage(profileInfo)));
+        // PopupMenuButton(
+        //   // add icon, by default "3 dot" icon
+        //   // icon: Icon(Icons.book)
+        //     itemBuilder: (context){
+        //       return [
+        //         PopupMenuItem<int>(
+        //           value: 0,
+        //           child: Text("My Profile"),
+        //         ),
+        //         // PopupMenuItem<int>(
+        //         //   value: 1,
+        //         //   child: Text("Leaderboard"),
+        //         // ),
+        //       ];
+        //     },
+        //     onSelected:(value) async {
+        //       if(value == 0){
+        //         //move to my profile page, call API and get info
+        //         // Get username from auth
+        //         final user = FirebaseAuth.instance.currentUser;
+        //         final name = user!.displayName!;
+        //         final Future<Map<dynamic,dynamic>> info = handleProfile(name);
+        //         Map<dynamic,dynamic> profileInfo = await info;
+        //         Navigator.push(context, MaterialPageRoute(
+        //             builder: (_) => ProfilePage(profileInfo)));
 
-              }else if(value == 1){
-                //move to leaderboard page, with my team, save which team he or she is on
-                final Future<List<dynamic>> rankp = getRank();
-                List<dynamic> rank = await rankp;
-                Navigator.push(context, MaterialPageRoute(
-                    builder: (_) => LeaderboardPage(rank)));
+        //       }
+        //       // else if(value == 1){
+        //       //   //move to leaderboard page, with my team, save which team he or she is on
+        //       //   final Future<List<dynamic>> rankp = getRank();
+        //       //   List<dynamic> rank = await rankp;
+        //       //   Navigator.push(context, MaterialPageRoute(
+        //       //       builder: (_) => LeaderboardPage(rank)));
                     
-              }else if(value == 2){
-                //move to team selection page, but with a popup saying you can't join more than one team for beta version.
-                Navigator.push(context, MaterialPageRoute(
-                    builder: (_) => SelectPage("CJ")));
-              }
-            }
-        ),
+        //       // }
+        //       // else if(value == 2){
+        //       //   //move to team selection page, but with a popup saying you can't join more than one team for beta version.
+        //       //   Navigator.push(context, MaterialPageRoute(
+        //       //       builder: (_) => SelectPage("CJ")));
+        //       // }
+        //     }
+        // ),
       ],
     );
   }

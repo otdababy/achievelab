@@ -15,17 +15,22 @@ class Popup extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Padding(
-        padding: EdgeInsets.only(top: (25.0)),
-        child: Center(
-          child: Text(
-            title,
-            textAlign: TextAlign.center,
-            style: TextStyle(
-                color: Colors.black,
-                fontFamily: 'SnowCrab',
-                fontSize: 15,
-                fontWeight: FontWeight.w500
+      backgroundColor: Colors.white,
+      title: Container(
+        height: 150,
+        width: 400,
+        child: Padding(
+          padding: EdgeInsets.only(top: (25.0)),
+          child: Center(
+            child: Text(
+              title,
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                  color: Colors.black,
+                  fontFamily: 'SnowCrab',
+                  fontSize: 17,
+                  fontWeight: FontWeight.w500
+              ),
             ),
           ),
         ),

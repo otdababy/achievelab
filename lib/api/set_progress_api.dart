@@ -15,7 +15,7 @@ import 'package:intl/intl.dart';
 
 class SetProgressAPI {
   static Future<http.Response> setProgress(String? userName, String? teamName) async {
-    final url = Uri.parse('https://jointeamapi-3byil7ydha-uc.a.run.app');
+    final url = Uri.parse('https://progressapi-3byil7ydha-uc.a.run.app');
     var now = new DateTime.now();
     var formatter = new DateFormat('yyyyMMdd');
     String formattedDate = formatter.format(now);
@@ -33,7 +33,6 @@ class SetProgressAPI {
           'teamName' : teamName,
           'date' : formattedDate,
           'success' : success
-          
         })
     );
     return a;

@@ -6,6 +6,7 @@ import 'package:achievelab/api/get_team_main_api.dart';
 import 'package:achievelab/teamlist/joinpop.dart';
 import 'package:achievelab/teamlist/teamlist_page.dart';
 import 'package:achievelab/teamlist/teamtext.dart';
+import 'package:achievelab/teamlist/teamtitle.dart';
 import 'package:achievelab/teamroom/team_page.dart';
 import 'package:achievelab/widget/styledbutton.dart';
 import 'package:achievelab/widget/styledtext.dart';
@@ -14,13 +15,17 @@ import 'package:flutter/material.dart';
 import '../select_page.dart';
 
 class JoinedTeamInfo extends StatefulWidget {
+  late String _rank;
+  late int _points;
   late String _name;
   late String _goal;
   late String _duration;
   late String _time;
   late String _deposit;
   late int _members;
-  JoinedTeamInfo(String name, String goal, String duration, String time, String deposit, int members, {super.key}){
+  JoinedTeamInfo(String rank, int points, String name, String goal, String duration, String time, String deposit, int members, {super.key}){
+    _rank = rank;
+    _points = points;
     _name = name;
     _goal = goal;
     _duration = duration;
@@ -30,10 +35,12 @@ class JoinedTeamInfo extends StatefulWidget {
   }
 
   @override
-  _JoinedTeamInfoState createState() => _JoinedTeamInfoState(_name,_goal,_duration,_time,_deposit,_members);
+  _JoinedTeamInfoState createState() => _JoinedTeamInfoState(_rank, _points, _name,_goal,_duration,_time,_deposit,_members);
 }
 
 class _JoinedTeamInfoState extends State<JoinedTeamInfo> {
+  late String _rank;
+  late int _points;
   late String _name;
   late String _goal;
   late String _duration;
@@ -41,7 +48,9 @@ class _JoinedTeamInfoState extends State<JoinedTeamInfo> {
   late String _deposit;
   late int _members;
 
-  _JoinedTeamInfoState(String name, String goal, String duration, String time, String deposit, int members) {
+  _JoinedTeamInfoState(String rank, int points, String name, String goal, String duration, String time, String deposit, int members) {
+    _rank = rank;
+    _points = points;
     _name = name;
     _goal = goal;
     _duration = duration;
@@ -144,7 +153,7 @@ class _JoinedTeamInfoState extends State<JoinedTeamInfo> {
                             List<dynamic> chat = await chatp;
 
                             Navigator.push(context, MaterialPageRoute(
-                              builder: (_) => TeamPage(info, chat)));
+                              builder: (_) => TeamPage(_rank, _points, info, chat)));
                           },
                           child: const Text(
                             "Enter",
@@ -181,10 +190,34 @@ class _JoinedTeamInfoState extends State<JoinedTeamInfo> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        TeamText(text: "Goal: $_goal", size: 15),
-                        TeamText(text: "Duration: $_duration", size: 15),
-                        TeamText(text: "Meeting: $_time", size: 15),
-                        TeamText(text: "Deposit: $_deposit", size: 15),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            TeamTitle(text: "Goal: ", size: 15),
+                            TeamText(text: '$_goal', size: 15),
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            TeamTitle(text: "Duration: ", size: 15),
+                            TeamText(text: '$_duration', size: 15),
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            TeamTitle(text: "Meeting: ", size: 15),
+                            TeamText(text: '$_time', size: 15),
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            TeamTitle(text: "Deposit: ", size: 15),
+                            TeamText(text: '$_deposit', size: 15),
+                          ],
+                        ),
                       ],
                     ),
                   ),

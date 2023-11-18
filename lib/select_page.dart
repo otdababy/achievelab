@@ -1,5 +1,7 @@
+import 'package:achievelab/signup_pop.dart';
 import 'package:achievelab/widget/appbar.dart';
 import 'package:achievelab/widget/interestbutton.dart';
+import 'package:achievelab/widget/interestbutton_beta.dart';
 import 'package:flutter/material.dart';
 import 'package:achievelab/widget/styledbutton.dart';
 import 'package:achievelab/widget/styledtext.dart';
@@ -57,10 +59,43 @@ class _SelectPageState extends State<SelectPage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        InterestButton(text: "Running",name: _name,),
                         InterestButton(text: "Waking up early",name: _name,),
-                        InterestButton(text: "Exercising",name: _name,),
-                        InterestButton(text: "Eating healthy",name: _name,),
+                        GestureDetector(
+                          onTap: () async {
+                            await showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return Popup(
+                                  title:
+                                      "Sorry for the inconvenience.\nYou can only choose \"Waking up early\" in the beta version.",
+                                );
+                              });
+                          },
+                          child: InterestButtonB(text: "Running",name: _name,)),
+                        GestureDetector(
+                          onTap: () async {
+                            await showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return Popup(
+                                  title:
+                                      "Sorry for the inconvenience.\nYou can only choose \"Waking up early\" in the beta version.",
+                                );
+                              });
+                          },
+                          child: InterestButtonB(text: "Eating healthy",name: _name,)),
+                        GestureDetector(
+                          onTap: () async {
+                            await showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return Popup(
+                                  title:
+                                      "Sorry for the inconvenience.\nYou can only choose \"Waking up early\" in the beta version.",
+                                );
+                              });
+                          },
+                          child: InterestButtonB(text: "Exercising",name: _name,)),
                       ],
                     ),
                     Row(

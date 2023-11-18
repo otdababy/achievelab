@@ -26,6 +26,7 @@ class TeamPop extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
+      backgroundColor: Colors.white,
       title: Padding(
         padding: EdgeInsets.only(top: (10.0)),
         child: Column(
