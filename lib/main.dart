@@ -2,6 +2,7 @@ import 'package:achievelab/leaderboard/leaderboard_page.dart';
 import 'package:achievelab/profile/profile_page.dart';
 import 'package:achievelab/select_page.dart';
 import 'package:achievelab/signup_page.dart';
+import 'package:achievelab/signup_pop.dart';
 import 'package:achievelab/teamlist/teamtext.dart';
 import 'package:achievelab/widget/appbar.dart';
 import 'package:achievelab/widget/styledbutton.dart';
@@ -100,7 +101,15 @@ class _LoginPageState extends State<LoginPage> {
                 Navigator.push(context, MaterialPageRoute(
                           builder: (_) => ProfilePage(profileInfo)));
             })
-        .catchError((error) => print(error));
+        .catchError((error) async => await showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            //ask score system api
+                            return Popup(
+                              title:
+                                  "Enter a correct email and password.",
+                            );
+                          }));
         
   }
 
