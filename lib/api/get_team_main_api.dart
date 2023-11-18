@@ -23,6 +23,8 @@ Future<List<bool>> getProgressForOneWeek(dynamic userRef) async {
   // Days since monday
   int weekday = now.weekday;
 
+  // weekday, but 1 is sunday, 2 is monday, ..., 7 is saturday
+  weekday = weekday == 7 ? 1 : weekday + 1;
   // Iterate progress
   for (int i = 0; i < weekday; i++) {
     // Get date

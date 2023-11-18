@@ -89,6 +89,7 @@ class _SignUpPageState extends State<SignUpPage> {
         "team_points": {},
         "deposits": {},
         "progress": {},
+        "tier": "Bronze",
       }).then((e) async {});
 
       print("new user ${displayName} is written");
