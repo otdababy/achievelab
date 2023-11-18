@@ -34,58 +34,62 @@ class _ProgressPopFState extends State<ProgressPopF> {
       backgroundColor: Colors.white,
       title: Padding(
         padding: EdgeInsets.only(top: (10.0)),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              "Failed... but it's okay!",
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                  color: Colors.black,
-                  fontFamily: 'SnowCrab',
-                  fontSize: 25,
-                  fontWeight: FontWeight.w700
-              ),
-            ),
-            Container(height: 10,),
-            Text(
-              "You still have...",
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                  color: Colors.black,
-                  fontFamily: 'SnowCrab',
-                  fontSize: 20,
-                  fontWeight: FontWeight.w500
-              ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Text(
-                  "${_joined['leftDeposit']} points",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontFamily: 'SnowCrab',
-                      fontSize: 20,
-                      fontWeight: FontWeight.w700
-                  ),
+        child: Container(
+          width: 400,
+          height: 300,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "Failed... but it's okay!",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    color: Colors.black,
+                    fontFamily: 'SnowCrab',
+                    fontSize: 25,
+                    fontWeight: FontWeight.w700
                 ),
-                Text(
-                  " left to try!",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontFamily: 'SnowCrab',
-                      fontSize: 20,
-                      fontWeight: FontWeight.w500
-                  ),
+              ),
+              Container(height: 10,),
+              Text(
+                "You still have...",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    color: Colors.black,
+                    fontFamily: 'SnowCrab',
+                    fontSize: 20,
+                    fontWeight: FontWeight.w500
                 ),
-              ],
-            ),
-
-          ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Text(
+                    "${_joined['leftDeposit']} points",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontFamily: 'SnowCrab',
+                        fontSize: 20,
+                        fontWeight: FontWeight.w700
+                    ),
+                  ),
+                  Text(
+                    " left to try!",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontFamily: 'SnowCrab',
+                        fontSize: 20,
+                        fontWeight: FontWeight.w500
+                    ),
+                  ),
+                ],
+              ),
+        
+            ],
+          ),
         ),
       ),
       actions: [

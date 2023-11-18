@@ -550,7 +550,7 @@ class _TeamPageState extends State<TeamPage> {
                   onTap: () async {
                     Future<Map> res = postProgress(_info['team_name'], user!);
                     Map<dynamic,dynamic> prog = await res;
-                    prog['result'] == 'fail' ? 
+                    prog['result'][isSuccess] == false ? 
                       await showDialog(
                           context: context,
                           builder: (BuildContext context) {
@@ -564,13 +564,13 @@ class _TeamPageState extends State<TeamPage> {
                           context: context,
                           builder: (BuildContext context) {
                             //ask score system api
-                        return ProgressPop(prog, _info['team_name']);
+                        return ProgressPop(prog['result']['body'], _info['team_name']);
                       }
                     ) : await showDialog(
                           context: context,
                           builder: (BuildContext context) {
                             //ask score system api
-                        return ProgressPopF(prog, _info['team_name']);
+                        return ProgressPopF(prog['result']['body'], _info['team_name']);
                       }
                     );
                   },
