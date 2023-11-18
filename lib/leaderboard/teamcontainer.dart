@@ -109,14 +109,15 @@ class _TeamContainerState extends State<TeamContainer> {
                             //     }
                             // );
                             await showDialog(
-                            context: context,
-                            builder: (BuildContext context) {
-                              //ask score system api
-                              return Popup(
-                                title:
-                                    "Sorry for the inconvenience.\n\n This feature is not available in the beta version.",
-                              );
-                          });
+                              context: context,
+                              builder: (BuildContext context) {
+                                //ask score system api
+                                return Popup(
+                                  title:
+                                      "Sorry for the inconvenience.\n\n This feature is not available in the beta version.",
+                                );
+                              }
+                            );
                           },
                           child: Text(
                             "Challenge",
