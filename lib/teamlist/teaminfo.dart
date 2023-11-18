@@ -86,73 +86,73 @@ class _TeamInfoState extends State<TeamInfo> {
           Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Container(
-                  width: 700,
-                  height: 90,
-                  decoration: BoxDecoration(
-                      color: Colors.grey,
-                      borderRadius: BorderRadius.all(Radius.circular(15))
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        children: [
-                          GestureDetector(
-                            onTap:(){
-                              setState(() {
+              GestureDetector(
+                onTap: (){
+                  setState(() {
                                 clicked == true ? clicked = false : clicked = true;
                               });
-                            },
-                            child: Container(
+                },
+                child: Container(
+                    width: 700,
+                    height: 90,
+                    decoration: BoxDecoration(
+                        color: Colors.grey,
+                        borderRadius: BorderRadius.all(Radius.circular(15))
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          children: [
+                            Container(
                               width: 10,
                               height: 10,
                               color: Colors.black,
                             ),
-                          ),
-                          StyledText(text: _name, size: 20),
-                        ],
-                      ),
-                      Spacer(),
-                      Row(
-                        children: [
-                          StyledText(text: "$_members/8", size: 15),
-                          Padding(
-                            padding: const EdgeInsets.all(5.0),
-                            child: Container(
-                              decoration: BoxDecoration(
-                                color: Colors.black,
-                                borderRadius: BorderRadius.circular(5),
-                                border: Border.all(color: Colors.grey),
-                              ),
-                              width: 100,
-                              height: 50,
-                              child: TextButton(
-                                onPressed: () async {
-                                  //send join request, show popup after joining,
-                                  final user = FirebaseAuth.instance.currentUser;
-                                  final userName = user!.displayName!;
-                                  handleTeam(userName, _name);
-                                
-                                },
-                                child: Text(
-                                  "Join",
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      // fontFamily: 'SnowCrab',
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.w500
+                            StyledText(text: _name, size: 20),
+                          ],
+                        ),
+                        Spacer(),
+                        Row(
+                          children: [
+                            StyledText(text: "$_members/8", size: 15),
+                            Padding(
+                              padding: const EdgeInsets.all(5.0),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  color: Colors.black,
+                                  borderRadius: BorderRadius.circular(5),
+                                  border: Border.all(color: Colors.grey),
+                                ),
+                                width: 100,
+                                height: 50,
+                                child: TextButton(
+                                  onPressed: () async {
+                                    //send join request, show popup after joining,
+                                    final user = FirebaseAuth.instance.currentUser;
+                                    final userName = user!.displayName!;
+                                    handleTeam(userName, _name);
+                                  
+                                  },
+                                  child: Text(
+                                    "Join",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        // fontFamily: 'SnowCrab',
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.w500
+                                    ),
                                   ),
                                 ),
                               ),
                             ),
-                          ),
-                          Container(width: 10,)
-                        ],
-                      )
-                    ],
-                  )
+                            Container(width: 10,)
+                          ],
+                        )
+                      ],
+                    )
+                ),
               ),
               clicked == true ?
               Row(

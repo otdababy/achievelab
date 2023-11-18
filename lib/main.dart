@@ -93,6 +93,7 @@ class _LoginPageState extends State<LoginPage> {
         .then((value) async {
                 final name = FirebaseAuth.instance.currentUser!.displayName!;
                 print(FirebaseAuth.instance.currentUser!);
+                print(name);
                 final Future<Map<dynamic,dynamic>> info = handleProfile(name);
                 Map<dynamic,dynamic> profileInfo = await info;
                 Navigator.push(context, MaterialPageRoute(

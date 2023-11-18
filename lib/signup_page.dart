@@ -31,11 +31,11 @@ class _SignUpPageState extends State<SignUpPage> {
   final _nameController = TextEditingController();
 
   bool validateName(String value) {
-    RegExp regex = RegExp(r'^(?=.*?[a-z]).{4,}$');
+    // RegExp regex = RegExp(r'^(?=.*?[a-z]).{3,}$');
     if (value.isEmpty) {
       return false;
     } else {
-      if (!regex.hasMatch(value)) {
+      if (value.length < 4) {
         return false;
       } else {
         return true;
@@ -43,9 +43,22 @@ class _SignUpPageState extends State<SignUpPage> {
     }
   }
 
+  // bool validatePeriod(String value) {
+  //   RegExp regex = RegExp(r'^(?=.*?[.]).{2,}$');
+  //   if (value.isEmpty) {
+  //     return false;
+  //   } else {
+  //     if (!regex.hasMatch(value)) {
+  //       return false;
+  //     } else {
+  //       return true;
+  //     }
+  //   }
+  // }
+
   bool validatePassword(String value) {
     RegExp regex =
-        RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$');
+        RegExp(r'^(?=.*?[a-z]).{6,}$');
     if (value.isEmpty) {
       return false;
     } else {
@@ -247,7 +260,7 @@ class _SignUpPageState extends State<SignUpPage> {
                             //ask score system api
                             return Popup(
                               title:
-                                  "Password should be longer than 7 characters and contain more than one uppercase, one lower case, one digit, and one special character",
+                                  "Password should be longer than 6 characters.",
                             );
                           });
                     } else if (!validateName(_nameController.text)) {
@@ -258,7 +271,7 @@ class _SignUpPageState extends State<SignUpPage> {
                             //ask score system api
                             return Popup(
                               title:
-                                  "Nickname should be at least 5 characters long",
+                                  "Nickname should be at least 4 characters long.",
                             );
                           });
                     }

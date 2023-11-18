@@ -120,6 +120,20 @@ class _TeamPageState extends State<TeamPage> {
 
   final _chatController = TextEditingController();
   final ScrollController _controller = ScrollController();
+  
+
+  @override
+  void initState() {
+    super.initState();
+    var scrollPosition = _controller.position;
+    if (scrollPosition.viewportDimension < scrollPosition.maxScrollExtent) {
+      _controller.animateTo(
+        scrollPosition.maxScrollExtent,
+        duration: new Duration(milliseconds: 200),
+        curve: Curves.easeOut,
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {

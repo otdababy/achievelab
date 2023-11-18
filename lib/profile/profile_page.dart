@@ -53,11 +53,12 @@ class _ProfilePageState extends State<ProfilePage> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         //Circular profile picture
-                        const CircleAvatar(
+                        CircleAvatar(
                           radius: 100.0,
-                          // backgroundImage:
-                          // NetworkImage("${snapshot.data.hitsList[index].previewUrl}"),
                           backgroundColor: Colors.grey,
+                          child: Image.asset('assets/profile.png'),
+                          
+                          
                         ),
                         Container(height: 10,),
                         StyledText(text: _info["name"], size: 25),
