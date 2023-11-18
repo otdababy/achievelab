@@ -169,7 +169,6 @@ class _WelcomePopState extends State<WelcomePop> {
             Padding(
               padding: const EdgeInsets.all(3.0),
               child: GestureDetector(
-<<<<<<< HEAD
                 onTap: () async {
                   final Future<Map<dynamic, dynamic>> infop = handleTeam(_team);
                             Map<dynamic, dynamic> info = await infop;
@@ -179,14 +178,6 @@ class _WelcomePopState extends State<WelcomePop> {
 
                             Navigator.push(context, MaterialPageRoute(
                               builder: (_) => TeamPage("Iron",0,info, chat)));
-=======
-                onTap: (){
-                  //which type of leaderboard, push
-                  setState(() {
-                    Navigator.push(context, MaterialPageRoute(
-                        builder: (_) => TeamPage("Running")));
-                  });
->>>>>>> main
                 },
                 child: Container(
                     width: 235,

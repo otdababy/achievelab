@@ -13,7 +13,7 @@ class GetChatAPI {
           'Content-Type': 'application/json; charset=UTF-8',
         },
         body: jsonEncode({
-          'teamName' : teamName,
+          'teamName' : teamName!,
           
         })
     );

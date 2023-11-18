@@ -63,7 +63,7 @@ class _ProgressPopFState extends State<ProgressPopF> {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Text(
-                  "${_joined['leftDeposit']} points",
+                  "${_joined['deposit_left']} points",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       color: Colors.black,

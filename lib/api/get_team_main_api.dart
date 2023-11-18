@@ -68,6 +68,17 @@ class GetTeamMainAPI {
     List<MapEntry<String, dynamic>> teamPoints =
         a['team_points'].entries.toList();
 
+    // Iterate each map entry, if NaN, set to 0
+    for (var i = 0; i < teamPoints.length; i++) {
+      if (teamPoints[i].value == "NaN") {
+        teamPoints[i] = MapEntry(teamPoints[i].key, 0);
+      }
+    }
+
+    print(teamPoints);
+
+
+
     teamPoints.sort((a, b) => b.value.compareTo(a.value));
 
     // For each user, get their progress
@@ -105,6 +116,7 @@ class GetTeamMainAPI {
     var deposits = userDoc['deposits'];
 
     int deposit = deposits[teamName];
+
 
     Map<String, dynamic> teamMainInfo = {
       "team_name": a['name'],
