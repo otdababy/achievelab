@@ -35,8 +35,8 @@ class _ProgressPopFState extends State<ProgressPopF> {
       title: Padding(
         padding: EdgeInsets.only(top: (10.0)),
         child: Container(
-          width: 400,
-          height: 300,
+          width: 350,
+          height: 120,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,

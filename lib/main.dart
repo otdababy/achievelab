@@ -34,6 +34,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'AchieveLab',
       theme: ThemeData(
+        appBarTheme: const AppBarTheme(scrolledUnderElevation: 0),
         // This is the theme of your application.
         //
         // TRY THIS: Try running your application with "flutter run". You'll see

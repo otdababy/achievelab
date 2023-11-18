@@ -150,6 +150,9 @@ class _JoinedTeamInfoState extends State<JoinedTeamInfo> {
         
                               final Future<List<dynamic>> chatp = getChat(_name);
                               List<dynamic> chat = await chatp;
+
+                              print(_rank);
+                              print("$_points");
         
                               Navigator.push(context, MaterialPageRoute(
                                 builder: (_) => TeamPage(_rank, _points, info, chat)));

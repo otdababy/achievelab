@@ -79,7 +79,7 @@ class _SelectPageState extends State<SelectPage> {
                               builder: (BuildContext context) {
                                 return Popup(
                                   title:
-                                      "Sorry for the inconvenience.\nYou can only choose \"Waking up early\" in the beta version.",
+                                      "Sorry for the inconvenience.\n\nYou can only choose \"Waking up early\" in the beta version.",
                                 );
                               });
                           },
@@ -91,7 +91,7 @@ class _SelectPageState extends State<SelectPage> {
                               builder: (BuildContext context) {
                                 return Popup(
                                   title:
-                                      "Sorry for the inconvenience.\nYou can only choose \"Waking up early\" in the beta version.",
+                                      "Sorry for the inconvenience.\n\nYou can only choose \"Waking up early\" in the beta version.",
                                 );
                               });
                           },
