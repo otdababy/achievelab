@@ -152,7 +152,7 @@ class _TeamPageState extends State<TeamPage> {
           children: [
             Column(
               children: [
-                Container(height: 10,),
+                Container(height: 20,),
                 Row(
                   children: [
                     Container
@@ -332,12 +332,13 @@ class _TeamPageState extends State<TeamPage> {
                   child: Padding(
                     padding: const EdgeInsets.all(15.0),
                     child: SingleChildScrollView(
+                      
                       controller: _controller,
                       child: Column(children: [
-                      for(var i =0; i<_chat.length; i++)
+                      for(var i =0; i< _chat.length; i++)
                         _chat[i][0] == FirebaseAuth.instance.currentUser!.displayName ? 
-                        myChat(_chat[i][0], _chat[i][1])
-                        : ChatBox(_chat[i][0], _chat[i][1])
+                        myChat(_chat[i]['user'], _chat[i]['message'])
+                        : ChatBox(_chat[i]['user'], _chat[i]['message'])
                     ],)),
                   ),
                 ),
@@ -378,10 +379,12 @@ class _TeamPageState extends State<TeamPage> {
                         postChat(_info['team_name'], name, _chatController.text);
                         final Future<List<dynamic>> chatp = getChat(_info['team_name']);
                         List<dynamic> chat = await chatp;
-                        setState(() {
-                          _chat = chat;
-                          _controller.jumpTo(_controller.position.maxScrollExtent);
-                        });
+                        // setState(() {
+                        //   _chat = chat;
+                        //   _controller.jumpTo(_controller.position.maxScrollExtent);
+                        // });
+                        Navigator.push(context, MaterialPageRoute(
+                          builder: (_) => TeamPage(_rank, _points, _info, chat)));
                       },
                       child: Container(width: 80,
                         height: 80, decoration: BoxDecoration(
@@ -410,6 +413,8 @@ class _TeamPageState extends State<TeamPage> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
+                Container(height: 20,),
+
                 Text(
                   "Goal",
                   textAlign: TextAlign.center,
@@ -550,7 +555,7 @@ class _TeamPageState extends State<TeamPage> {
                   onTap: () async {
                     Future<Map> res = postProgress(_info['team_name'], user!);
                     Map<dynamic,dynamic> prog = await res;
-                    prog['result'] == 'fail' ? 
+                    prog['result']['isSuccess'] == false ? 
                       await showDialog(
                           context: context,
                           builder: (BuildContext context) {
@@ -564,13 +569,13 @@ class _TeamPageState extends State<TeamPage> {
                           context: context,
                           builder: (BuildContext context) {
                             //ask score system api
-                        return ProgressPop(prog, _info['team_name']);
+                        return ProgressPop(prog['result']['body'], _info['team_name']);
                       }
                     ) : await showDialog(
                           context: context,
                           builder: (BuildContext context) {
                             //ask score system api
-                        return ProgressPopF(prog, _info['team_name']);
+                        return ProgressPopF(prog['result']['body'], _info['team_name']);
                       }
                     );
                   },

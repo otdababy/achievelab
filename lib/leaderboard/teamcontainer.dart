@@ -1,4 +1,5 @@
 
+import 'package:achievelab/signup_pop.dart';
 import 'package:achievelab/teamlist/joinpop.dart';
 import 'package:achievelab/teamlist/teamlist_page.dart';
 import 'package:achievelab/teamlist/teamtext.dart';
@@ -107,6 +108,16 @@ class _TeamContainerState extends State<TeamContainer> {
                             //       return JoinPop(team: _name,);
                             //     }
                             // );
+                            await showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                //ask score system api
+                                return Popup(
+                                  title:
+                                      "Sorry for the inconvenience.\n\n This feature is not available in the beta version.",
+                                );
+                              }
+                            );
                           },
                           child: Text(
                             "Challenge",

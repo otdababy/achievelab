@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:achievelab/api/join_team_api.dart';
 import 'package:achievelab/teamlist/teaminfo.dart';
+import 'package:achievelab/teamlist/teaminfof.dart';
 import 'package:achievelab/widget/appbar.dart';
 import 'package:achievelab/widget/interestbutton.dart';
 import 'package:flutter/material.dart';
@@ -56,8 +57,10 @@ class _TeamListPageState extends State<TeamListPage> {
                         children: [
                           const StyledText(text: "Find your team", size: 40),
                           Container(height: 30,),
-                          for(var i =0; i<_teamList.length; i++)
-                          TeamInfo("${_teamList[i]['name']}", "${_teamList[i]['description']}",
+                          TeamInfo("${_teamList[0]['name']}", "${_teamList[0]['description']}",
+                             "10/1-10/31", "5PM, Every Sunday","100 points, 30 points deducted per failure", _teamList[0]['numMembers'] ),
+                          for(var i =1; i<_teamList.length; i++)
+                          TeamInfoF("${_teamList[i]['name']}", "${_teamList[i]['description']}",
                              "10/1-10/31", "5PM, Every Sunday","100 points, 30 points deducted per failure", _teamList[i]['numMembers'] ),
         
                           //

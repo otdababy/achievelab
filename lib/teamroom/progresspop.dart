@@ -34,64 +34,68 @@ class _ProgressPopState extends State<ProgressPop> {
       backgroundColor: Colors.white,
       title: Padding(
         padding: EdgeInsets.only(top: (10.0)),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              "Good Job!",
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                  color: Colors.black,
-                  fontFamily: 'SnowCrab',
-                  fontSize: 17,
-                  fontWeight: FontWeight.w700
+        child: Container(
+          width: 400,
+          height: 300,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "Good Job!",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    color: Colors.black,
+                    fontFamily: 'SnowCrab',
+                    fontSize: 17,
+                    fontWeight: FontWeight.w700
+                ),
               ),
-            ),
-            Text(
-              "You just contributed the following!",
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                  color: Colors.black,
-                  fontFamily: 'SnowCrab',
-                  fontSize: 15,
-                  fontWeight: FontWeight.w500
+              Text(
+                "You just contributed the following!",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    color: Colors.black,
+                    fontFamily: 'SnowCrab',
+                    fontSize: 15,
+                    fontWeight: FontWeight.w500
+                ),
               ),
-            ),
-            Text(
-              "Rank ${_joined['prevRank']}th place -> ${_joined['curRank']}th place",
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                  color: Colors.black,
-                  fontFamily: 'SnowCrab',
-                  fontSize: 15,
-                  fontWeight: FontWeight.w700
+              Text(
+                "Rank ${_joined['prevRank']}th place -> ${_joined['curRank']}th place",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    color: Colors.black,
+                    fontFamily: 'SnowCrab',
+                    fontSize: 15,
+                    fontWeight: FontWeight.w700
+                ),
               ),
-            ),
-            Container(height: 30,),
-            Text(
-              "Score: ${_joined['prevScore']}pts -> ${_joined['curScore']}pts",
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                  color: Colors.red,
-                  fontFamily: 'SnowCrab',
-                  fontSize: 15,
-                  fontWeight: FontWeight.w700
+              Container(height: 30,),
+              Text(
+                "Score: ${_joined['prevScore']}pts -> ${_joined['curScore']}pts",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    color: Colors.red,
+                    fontFamily: 'SnowCrab',
+                    fontSize: 15,
+                    fontWeight: FontWeight.w700
+                ),
               ),
-            ),
-            Container(height: 5,),
-            Text(
-              "Current score of [$_name]: ${_joined['prevTotalScore']}pts -> ${_joined['curTotalScore']}pts",
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                  color: Colors.red,
-                  fontFamily: 'SnowCrab',
-                  fontSize: 15,
-                  fontWeight: FontWeight.w700
+              Container(height: 5,),
+              Text(
+                "Current score of [$_name]: ${_joined['prevTotalScore']}pts -> ${_joined['curTotalScore']}pts",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    color: Colors.red,
+                    fontFamily: 'SnowCrab',
+                    fontSize: 15,
+                    fontWeight: FontWeight.w700
+                ),
               ),
-            ),
-
-          ],
+        
+            ],
+          ),
         ),
       ),
       actions: [
