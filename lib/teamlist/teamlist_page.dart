@@ -60,7 +60,7 @@ class _TeamListPageState extends State<TeamListPage> {
                           TeamInfo("${_teamList[0]['name']}", "${_teamList[0]['description']}",
                              "10/1-10/31", "5PM, Every Sunday","100 points, 30 points deducted per failure", _teamList[0]['numMembers'] ),
                           for(var i =1; i<_teamList.length; i++)
-                          TeamInfoF("${_teamList[i]['name']}", "${_teamList[i]['description']}",
+                          TeamInfo("${_teamList[i]['name']}", "${_teamList[i]['description']}",
                              "10/1-10/31", "5PM, Every Sunday","100 points, 30 points deducted per failure", _teamList[i]['numMembers'] ),
         
                           //
