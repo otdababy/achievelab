@@ -133,7 +133,7 @@ class _WelcomePopState extends State<WelcomePop> {
                   final Future<List<dynamic>> rankp = getRank();
                 List<dynamic> rank = await rankp;
                 Navigator.push(context, MaterialPageRoute(
-                    builder: (_) => LeaderboardPage("Iron",0,rank)));
+                    builder: (_) => LeaderboardPage("Bronze",0,rank)));
                 });
               },
               child: Padding(
@@ -177,7 +177,7 @@ class _WelcomePopState extends State<WelcomePop> {
                             List<dynamic> chat = await chatp;
 
                             Navigator.push(context, MaterialPageRoute(
-                              builder: (_) => TeamPage("Iron",0,info, chat)));
+                              builder: (_) => TeamPage("Bronze",0,info, chat)));
                 },
                 child: Container(
                     width: 235,

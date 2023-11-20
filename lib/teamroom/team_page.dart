@@ -336,7 +336,7 @@ class _TeamPageState extends State<TeamPage> {
                       controller: _controller,
                       child: Column(children: [
                       for(var i =0; i< _chat.length; i++)
-                        _chat[i][0] == FirebaseAuth.instance.currentUser!.displayName ? 
+                        _chat[i]['user'] == FirebaseAuth.instance.currentUser!.displayName ? 
                         myChat(_chat[i]['user'], _chat[i]['message'])
                         : ChatBox(_chat[i]['user'], _chat[i]['message'])
                     ],)),
