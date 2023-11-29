@@ -1,4 +1,4 @@
-# CS473 High-Fi Prototype - AchieveLab
+# High-Fi Prototype - AchieveLab
 
 A collaborative platform to help goal-achieving.
 
